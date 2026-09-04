@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.fileforge.controller.document.SplitPdfController"
+      spacing="15">
+
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30"/>
+    </padding>
+
+    <Button fx:id="backButton" text="← Back" onAction="#goBack" styleClass="back-button"/>
+
+    <Label text="Split PDF" styleClass="page-title"/>
+    <Label text="Click pages to select them, or type ranges directly (e.g. 1-3, 4-6, 7-10)" styleClass="page-subtitle"/>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button text="Select PDF" onAction="#handleSelectPdf"/>
+        <Label fx:id="sourceFileLabel" text="No file selected" styleClass="file-label"/>
+    </HBox>
+
+    <ListView fx:id="pageListView" prefHeight="190"/>
+
+    <Label text="Page ranges (e.g. 1-3, 4-6, 7-10):" styleClass="field-label"/>
+    <TextField fx:id="rangesField" promptText="1-3, 4-6, 7-10"/>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button text="Choose Output Folder" onAction="#handleChooseFolder"/>
+        <Label fx:id="outputFolderLabel" text="No folder selected" styleClass="file-label"/>
+    </HBox>
+
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <Button text="Split" onAction="#handleSplit" styleClass="primary-button"/>
+        <Label fx:id="statusLabel" styleClass="status-label" wrapText="true"/>
+    </HBox>
+
+</VBox>

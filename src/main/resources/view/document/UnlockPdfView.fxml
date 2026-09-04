@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.fileforge.controller.document.UnlockPdfController"
+      spacing="15">
+
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30"/>
+    </padding>
+
+    <Label text="Unlock PDF" styleClass="page-title"/>
+    <Label text="Remove password protection from a PDF" styleClass="page-subtitle"/>
+
+    <Button text="Choose PDF File" onAction="#chooseFile" styleClass="tool-button"/>
+    <Label fx:id="fileLabel" text="No file selected" styleClass="page-subtitle"/>
+
+    <Label text="Password:" styleClass="page-subtitle"/>
+    <PasswordField fx:id="passwordField" promptText="Enter password" maxWidth="300"/>
+
+    <HBox spacing="10">
+        <Button text="Unlock PDF" onAction="#unlockPdf" styleClass="tool-button"/>
+        <Button fx:id="backButton" text="Back" onAction="#goBack" styleClass="tool-button"/>
+    </HBox>
+
+    <Label fx:id="statusLabel" styleClass="page-subtitle"/>
+
+</VBox>

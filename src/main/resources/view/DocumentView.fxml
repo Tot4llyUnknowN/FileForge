@@ -1,9 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-      alignment="CENTER" spacing="10">
+      fx:controller="com.fileforge.controller.DocumentController"
+      spacing="10">
+
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30"/>
+    </padding>
+
     <Label text="Document Tools" styleClass="page-title"/>
-    <Label text="Coming soon..." styleClass="page-subtitle"/>
+    <Label text="Choose a tool" styleClass="page-subtitle"/>
+
+    <FlowPane hgap="20" vgap="20" styleClass="card-grid">
+        <VBox.margin>
+            <Insets top="20"/>
+        </VBox.margin>
+
+        <VBox styleClass="card, card-document" prefWidth="200" prefHeight="110" onMouseClicked="#goToDocInfo">
+            <Label text="📄" styleClass="card-icon"/>
+            <Label text="Document Info" styleClass="card-title"/>
+        </VBox>
+
+        <VBox styleClass="card, card-document" prefWidth="200" prefHeight="110" onMouseClicked="#goToMerger">
+            <Label text="🔗" styleClass="card-icon"/>
+            <Label text="PDF Merger" styleClass="card-title"/>
+        </VBox>
+
+        <VBox styleClass="card, card-document" prefWidth="200" prefHeight="110" onMouseClicked="#goToSplit">
+            <Label text="✂" styleClass="card-icon"/>
+            <Label text="Split PDF" styleClass="card-title"/>
+        </VBox>
+
+        <VBox styleClass="card, card-document" prefWidth="200" prefHeight="110" onMouseClicked="#goToImageToPdf">
+            <Label text="🖼" styleClass="card-icon"/>
+            <Label text="Image to PDF" styleClass="card-title"/>
+        </VBox>
+
+        <VBox styleClass="card, card-document" prefWidth="200" prefHeight="110" onMouseClicked="#goToPdfToImage">
+            <Label text="📤" styleClass="card-icon"/>
+            <Label text="PDF to Image" styleClass="card-title"/>
+        </VBox>
+
+        <VBox styleClass="card, card-document" prefWidth="200" prefHeight="110" onMouseClicked="#goToDeletePages">
+            <Label text="🗑" styleClass="card-icon"/>
+            <Label text="Delete Pages" styleClass="card-title"/>
+        </VBox>
+
+        <VBox styleClass="card, card-document" prefWidth="200" prefHeight="110" onMouseClicked="#goToReorderPages">
+            <Label text="↕" styleClass="card-icon"/>
+            <Label text="Reorder Pages" styleClass="card-title"/>
+        </VBox>
+
+        <VBox styleClass="card, card-document" prefWidth="200" prefHeight="110" onMouseClicked="#goToLockPdf">
+            <Label text="🔒" styleClass="card-icon"/>
+            <Label text="Lock PDF" styleClass="card-title"/>
+        </VBox>
+
+        <VBox styleClass="card, card-document" prefWidth="200" prefHeight="110" onMouseClicked="#goToUnlockPdf">
+            <Label text="🔓" styleClass="card-icon"/>
+            <Label text="Unlock PDF" styleClass="card-title"/>
+        </VBox>
+
+        <VBox styleClass="card, card-document" prefWidth="200" prefHeight="110" onMouseClicked="#goToExcelToCsv">
+            <Label text="📊" styleClass="card-icon"/>
+            <Label text="Excel to CSV" styleClass="card-title"/>
+        </VBox>
+
+    </FlowPane>
 </VBox>

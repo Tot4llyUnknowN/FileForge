@@ -65,6 +65,18 @@
     -fx-text-fill: #555555;
 }
 
+.thumbnail-cell {
+    -fx-padding: 6;
+    -fx-background-radius: 6;
+}
+.thumbnail-selected {
+    -fx-background-color: rgba(66, 133, 244, 0.25);
+    -fx-border-color: #4285f4;
+    -fx-border-width: 2;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+}
+
 .card-document { -fx-background-color: #e4defb; }
 .card-image    { -fx-background-color: #dbeafe; }
 .card-audio    { -fx-background-color: #fbe1ef; }

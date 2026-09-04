@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.fileforge.controller.document.DocInfoController"
+      spacing="15">
+
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30"/>
+    </padding>
+
+    <Label text="Document Info" styleClass="page-title"/>
+    <Label text="Select a PDF to view its details" styleClass="page-subtitle"/>
+
+    <Button text="Choose PDF File" onAction="#chooseFile" styleClass="tool-button"/>
+
+    <TextArea fx:id="infoArea" editable="false" wrapText="true" prefHeight="250"
+              promptText="File info will appear here"/>
+
+    <Button fx:id="backButton" text="← Back" onAction="#goBack" styleClass="tool-button"/>
+</VBox>

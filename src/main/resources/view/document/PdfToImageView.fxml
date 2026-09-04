@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.fileforge.controller.document.PdfToImageController"
+      spacing="15">
+
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30"/>
+    </padding>
+
+    <Button fx:id="backButton" text="← Back" onAction="#goBack" styleClass="back-button"/>
+
+    <Label text="PDF to Image" styleClass="page-title"/>
+    <Label text="Convert every page of a PDF into a PNG image" styleClass="page-subtitle"/>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button text="Select PDF" onAction="#handleSelectPdf"/>
+        <Label fx:id="sourceFileLabel" text="No file selected" styleClass="file-label"/>
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button text="Choose Output Folder" onAction="#handleChooseFolder"/>
+        <Label fx:id="outputFolderLabel" text="No folder selected" styleClass="file-label"/>
+    </HBox>
+
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <Button text="Convert" onAction="#handleConvert" styleClass="primary-button"/>
+        <Label fx:id="statusLabel" styleClass="status-label" wrapText="true"/>
+    </HBox>
+
+</VBox>
