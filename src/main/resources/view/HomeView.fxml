@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.fileforge.controller.HomeController"
+      spacing="10">
+
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30"/>
+    </padding>
+
+    <Label text="Welcome to FileForge" styleClass="page-title"/>
+    <Label text="Pick a category to get started" styleClass="page-subtitle"/>
+
+    <FlowPane hgap="20" vgap="20" styleClass="card-grid">
+        <VBox.margin>
+            <Insets top="25"/>
+        </VBox.margin>
+
+        <VBox styleClass="card, card-document" prefWidth="220" prefHeight="140" onMouseClicked="#goToDocument">
+            <Label text="📄" styleClass="card-icon"/>
+            <Label text="Document" styleClass="card-title"/>
+            <Label text="PDF, Word &amp; document tools" styleClass="card-subtitle" wrapText="true"/>
+        </VBox>
+
+        <VBox styleClass="card, card-image" prefWidth="220" prefHeight="140" onMouseClicked="#goToImage">
+            <Label text="🖼" styleClass="card-icon"/>
+            <Label text="Image" styleClass="card-title"/>
+            <Label text="Convert, compress &amp; edit images" styleClass="card-subtitle" wrapText="true"/>
+        </VBox>
+
+        <VBox styleClass="card, card-audio" prefWidth="220" prefHeight="140" onMouseClicked="#goToAudio">
+            <Label text="🎵" styleClass="card-icon"/>
+            <Label text="Audio" styleClass="card-title"/>
+            <Label text="Convert and edit audio formats" styleClass="card-subtitle" wrapText="true"/>
+        </VBox>
+
+        <VBox styleClass="card, card-video" prefWidth="220" prefHeight="140" onMouseClicked="#goToVideo">
+            <Label text="🎬" styleClass="card-icon"/>
+            <Label text="Video" styleClass="card-title"/>
+            <Label text="Video convert, compress &amp; more" styleClass="card-subtitle" wrapText="true"/>
+        </VBox>
+
+        <VBox styleClass="card, card-text" prefWidth="220" prefHeight="140" onMouseClicked="#goToText">
+            <Label text="✏" styleClass="card-icon"/>
+            <Label text="Text" styleClass="card-title"/>
+            <Label text="Text tools &amp; formatting" styleClass="card-subtitle" wrapText="true"/>
+        </VBox>
+
+    </FlowPane>
+</VBox>

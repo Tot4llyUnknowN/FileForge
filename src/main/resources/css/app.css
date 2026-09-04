@@ -1,0 +1,72 @@
+.sidebar {
+    -fx-background-color: #f4f1fb;
+    -fx-border-color: #e0dcf0;
+    -fx-border-width: 0 1 0 0;
+}
+
+.sidebar-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #6c4fd6;
+}
+
+.sidebar-button {
+    -fx-background-color: transparent;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12 20 12 20;
+    -fx-font-size: 14px;
+    -fx-text-fill: #333333;
+    -fx-cursor: hand;
+}
+
+.sidebar-button:hover {
+    -fx-background-color: #e6e0fa;
+}
+
+.content-area {
+    -fx-background-color: #ffffff;
+}
+
+.page-title {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.page-subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: #888888;
+}
+
+.card {
+    -fx-background-radius: 16;
+    -fx-padding: 20;
+    -fx-alignment: TOP_LEFT;
+    -fx-cursor: hand;
+    -fx-spacing: 8;
+}
+
+.card:hover {
+    -fx-opacity: 0.85;
+}
+
+.card-icon {
+    -fx-font-size: 28px;
+}
+
+.card-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #222222;
+}
+
+.card-subtitle {
+    -fx-font-size: 12px;
+    -fx-text-fill: #555555;
+}
+
+.card-document { -fx-background-color: #e4defb; }
+.card-image    { -fx-background-color: #dbeafe; }
+.card-audio    { -fx-background-color: #fbe1ef; }
+.card-video    { -fx-background-color: #fde3cd; }
+.card-text     { -fx-background-color: #fbf3cf; }
