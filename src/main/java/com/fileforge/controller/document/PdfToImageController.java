@@ -98,9 +98,8 @@ public class PdfToImageController {
 
     @FXML
     private void goBack() {
-        NavigationHelper.navigate(backButton, "/view/DocumentView.fxml");
+        NavigationHelper.goBack(backButton);
     }
-
     private void showStatus(String message, boolean isError) {
         statusLabel.setText(message);
         statusLabel.setStyle(isError ? "-fx-text-fill: #d9534f;" : "-fx-text-fill: #2e7d32;");

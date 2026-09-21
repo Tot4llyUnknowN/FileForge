@@ -1,19 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.fileforge.controller.ImageComingSoonController"
-      alignment="CENTER" spacing="15">
+      fx:controller="com.fileforge.controller.image.ResizeImageController"
+      spacing="15">
 
     <padding>
         <Insets top="30" right="30" bottom="30" left="30"/>
     </padding>
 
-    <Label text="Resize Image" styleClass="page-title"/>
-    <Label text="Coming soon..." styleClass="page-subtitle"/>
+    <Button fx:id="backButton" text="← Back" onAction="#goBack" styleClass="back-button"/>
 
-    <Button fx:id="backButton" text="Back" onAction="#goBack" styleClass="tool-button"/>
+    <Label text="Resize Image" styleClass="page-title"/>
+    <Label text="Resize by exact dimensions or by percentage" styleClass="page-subtitle"/>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button text="Select Image" onAction="#handleSelectImage"/>
+        <Label fx:id="sourceFileLabel" text="No file selected" styleClass="file-label"/>
+    </HBox>
+
+    <ImageView fx:id="previewImage" fitWidth="200" fitHeight="200" preserveRatio="true"/>
+
+    <Label fx:id="dimensionsLabel" text="" styleClass="field-label"/>
+
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <fx:define>
+            <ToggleGroup fx:id="modeGroup"/>
+        </fx:define>
+        <RadioButton fx:id="exactModeRadio" text="Exact size (px)" toggleGroup="$modeGroup" selected="true" onAction="#handleModeChanged"/>
+        <RadioButton fx:id="percentModeRadio" text="Percentage" toggleGroup="$modeGroup" onAction="#handleModeChanged"/>
+    </HBox>
+
+    <HBox fx:id="exactSizeBox" spacing="10" alignment="CENTER_LEFT">
+        <Label text="Width (px):"/>
+        <TextField fx:id="widthField" prefWidth="100"/>
+        <Label text="Height (px):"/>
+        <TextField fx:id="heightField" prefWidth="100"/>
+    </HBox>
+
+    <HBox fx:id="percentBox" spacing="10" alignment="CENTER_LEFT" visible="false" managed="false">
+        <Label text="Scale (%):"/>
+        <TextField fx:id="scaleField" prefWidth="100" promptText="e.g. 50"/>
+    </HBox>
+
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <Button text="Resize &amp; Save As..." onAction="#handleResize" styleClass="primary-button"/>
+        <Label fx:id="statusLabel" styleClass="status-label" wrapText="true"/>
+    </HBox>
+
 </VBox>

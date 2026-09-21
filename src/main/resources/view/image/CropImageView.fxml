@@ -2,18 +2,40 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.fileforge.controller.ImageComingSoonController"
-      alignment="CENTER" spacing="15">
+<VBox xmlns="http://javafx.com" xmlns:fx="http://javafx.com"
+      fx:controller="com.fileforge.controller.image.CropImageController"
+      spacing="15">
 
     <padding>
         <Insets top="30" right="30" bottom="30" left="30"/>
     </padding>
 
-    <Label text="Crop Image" styleClass="page-title"/>
-    <Label text="Coming soon..." styleClass="page-subtitle"/>
+    <Button fx:id="backButton" text="← Back" onAction="#goBack" styleClass="back-button"/>
 
-    <Button fx:id="backButton" text="Back" onAction="#goBack" styleClass="tool-button"/>
+    <Label text="Crop Image Workspace" styleClass="page-title"/>
+    <Label text="Upload an asset file and draw a selection rectangle boundaries matrix to extract your target sub-canvas area" styleClass="page-subtitle"/>
+
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <Button text="Open Image Target" onAction="#chooseFile" styleClass="tool-button"/>
+        <Label fx:id="fileLabel" text="No file selected" styleClass="page-subtitle"/>
+    </HBox>
+
+    <!-- Structural layers stack framing viewport actions -->
+    <StackPane alignment="TOP_LEFT" style="-fx-background-color: #f8f9fa; -fx-border-color: #e2e8f0; -fx-border-radius: 8;" maxWidth="600" maxHeight="400">
+        <Pane fx:id="imagePane" onMousePressed="#handleMousePressed" onMouseDragged="#handleMouseDragged">
+            <ImageView fx:id="previewImage" fitWidth="600" fitHeight="400" preserveRatio="true"/>
+        </Pane>
+    </StackPane>
+
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <Button fx:id="cropButton" text="Crop &amp; Save Sub-image Selection..." onAction="#cropAndSave" disable="true" styleClass="primary-button"/>
+        <Label fx:id="statusLabel" styleClass="status-label" wrapText="true"/>
+    </HBox>
+
 </VBox>
