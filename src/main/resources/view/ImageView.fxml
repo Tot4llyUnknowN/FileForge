@@ -1,9 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-      alignment="CENTER" spacing="10">
+      fx:controller="com.fileforge.controller.ImageController"
+      spacing="10">
+
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30"/>
+    </padding>
+
     <Label text="Image Tools" styleClass="page-title"/>
-    <Label text="Coming soon..." styleClass="page-subtitle"/>
+    <Label text="Choose a tool" styleClass="page-subtitle"/>
+
+    <FlowPane hgap="20" vgap="20" styleClass="card-grid">
+        <VBox.margin>
+            <Insets top="20"/>
+        </VBox.margin>
+
+        <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToJpgToPng">
+            <Label text="JPG to PNG" styleClass="card-title"/>
+        </VBox>
+
+        <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToPngToJpg">
+            <Label text="PNG to JPG" styleClass="card-title"/>
+        </VBox>
+
+        <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToJpgToWebp">
+            <Label text="JPG to WEBP" styleClass="card-title"/>
+        </VBox>
+
+        <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToWebpToJpg">
+            <Label text="WEBP to JPG" styleClass="card-title"/>
+        </VBox>
+
+        <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToImageToPdf">
+            <Label text="Image to PDF" styleClass="card-title"/>
+        </VBox>
+
+        <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToPdfToImage">
+            <Label text="PDF to Image" styleClass="card-title"/>
+        </VBox>
+
+        <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToResize">
+            <Label text="Resize Image" styleClass="card-title"/>
+        </VBox>
+
+        <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToCompress">
+            <Label text="Compress Image" styleClass="card-title"/>
+        </VBox>
+
+        <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToCrop">
+            <Label text="Crop Image" styleClass="card-title"/>
+        </VBox>
+
+        <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToRotateFlip">
+            <Label text="Rotate and Flip" styleClass="card-title"/>
+        </VBox>
+
+        <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToMetadata">
+            <Label text="Metadata Viewer" styleClass="card-title"/>
+        </VBox>
+
+    </FlowPane>
 </VBox>

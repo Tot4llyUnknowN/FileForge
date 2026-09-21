@@ -38,7 +38,7 @@ public class PdfThumbnailUtil {
     /**
      * Manual BufferedImage -> JavaFX Image conversion, avoiding the javafx-swing dependency.
      */
-    private static Image toFxImage(BufferedImage bufferedImage) {
+    public static Image toFxImage(BufferedImage bufferedImage) {
         int width = bufferedImage.getWidth();
         int height = bufferedImage.getHeight();
 
