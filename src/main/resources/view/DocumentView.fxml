@@ -36,15 +36,6 @@
             <Label text="Split PDF" styleClass="card-title"/>
         </VBox>
 
-        <VBox styleClass="card, card-document" prefWidth="200" prefHeight="110" onMouseClicked="#goToImageToPdf">
-            <Label text="🖼" styleClass="card-icon"/>
-            <Label text="Image to PDF" styleClass="card-title"/>
-        </VBox>
-
-        <VBox styleClass="card, card-document" prefWidth="200" prefHeight="110" onMouseClicked="#goToPdfToImage">
-            <Label text="📤" styleClass="card-icon"/>
-            <Label text="PDF to Image" styleClass="card-title"/>
-        </VBox>
 
         <VBox styleClass="card, card-document" prefWidth="200" prefHeight="110" onMouseClicked="#goToDeletePages">
             <Label text="🗑" styleClass="card-icon"/>
@@ -56,6 +47,34 @@
             <Label text="Reorder Pages" styleClass="card-title"/>
         </VBox>
 
+        <VBox styleClass="card, card-document" prefWidth="200" prefHeight="110" onMouseClicked="#goToImageToPdf">
+            <Label text="🖼" styleClass="card-icon"/>
+            <Label text="Image to PDF" styleClass="card-title"/>
+        </VBox>
+
+        <VBox styleClass="card, card-document" prefWidth="200" prefHeight="110" onMouseClicked="#goToPdfToImage">
+            <Label text="📤" styleClass="card-icon"/>
+            <Label text="PDF to Image" styleClass="card-title"/>
+        </VBox>
+
+        <VBox styleClass="card, card-document" prefWidth="200" prefHeight="110" onMouseClicked="#goToDocxToPdf">
+            <Label text="📝" styleClass="card-icon"/>
+            <Label text="DOCX to PDF" styleClass="card-title"/>
+        </VBox>
+        <!-- Tool Card: PPTX to PDF Converter Workspace -->
+        <VBox styleClass="card, card-document" prefWidth="200" prefHeight="110" onMouseClicked="#goToPptxToPdf">
+            <Label text="📊" styleClass="card-icon"/>
+            <Label text="PPTX to PDF" styleClass="card-title"/>
+            <Label text="Merge &amp; convert slides" styleClass="card-subtitle"/>
+        </VBox>
+
+
+        <VBox styleClass="card, card-document" prefWidth="200" prefHeight="110" onMouseClicked="#goToExcelToCsv">
+            <Label text="📊" styleClass="card-icon"/>
+            <Label text="Excel to CSV" styleClass="card-title"/>
+        </VBox>
+
+
         <VBox styleClass="card, card-document" prefWidth="200" prefHeight="110" onMouseClicked="#goToLockPdf">
             <Label text="🔒" styleClass="card-icon"/>
             <Label text="Lock PDF" styleClass="card-title"/>
@@ -66,16 +85,6 @@
             <Label text="Unlock PDF" styleClass="card-title"/>
         </VBox>
 
-        <VBox styleClass="card, card-document" prefWidth="200" prefHeight="110" onMouseClicked="#goToDocxToPdf">
-            <Label text="📝" styleClass="card-icon"/>
-            <Label text="DOCX to PDF" styleClass="card-title"/>
-        </VBox>
-
-
-        <VBox styleClass="card, card-document" prefWidth="200" prefHeight="110" onMouseClicked="#goToExcelToCsv">
-            <Label text="📊" styleClass="card-icon"/>
-            <Label text="Excel to CSV" styleClass="card-title"/>
-        </VBox>
 
     </FlowPane>
 </VBox>

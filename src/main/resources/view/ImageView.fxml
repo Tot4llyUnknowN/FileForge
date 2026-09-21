@@ -28,10 +28,6 @@
             <Label text="PNG to JPG" styleClass="card-title"/>
         </VBox>
 
-        <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToJpgToWebp">
-            <Label text="JPG to WEBP" styleClass="card-title"/>
-        </VBox>
-
         <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToWebpToJpg">
             <Label text="WEBP to JPG" styleClass="card-title"/>
         </VBox>

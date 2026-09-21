@@ -8,6 +8,10 @@ public class DocumentController {
     private void goToDocxToPdf(MouseEvent e) {
         nav(e, "/view/document/DocxToPdfView.fxml");
     }
+    @FXML
+    private void goToPptxToPdf(MouseEvent e) {
+        nav(e, "/view/document/PptxToPdfView.fxml");
+    }
 
     @FXML private void goToDocInfo(MouseEvent e) { nav(e, "/view/document/DocInfoView.fxml"); }
     @FXML private void goToMerger(MouseEvent e) { nav(e, "/view/document/PdfMergerView.fxml"); }

@@ -7,7 +7,6 @@ public class ImageController {
 
     @FXML private void goToJpgToPng(MouseEvent e) { nav(e, "/view/image/JpgToPngView.fxml"); }
     @FXML private void goToPngToJpg(MouseEvent e) { nav(e, "/view/image/PngToJpgView.fxml"); }
-    @FXML private void goToJpgToWebp(MouseEvent e) { nav(e, "/view/image/JpgToWebpView.fxml"); }
     @FXML private void goToWebpToJpg(MouseEvent e) { nav(e, "/view/image/WebpToJpgView.fxml"); }
     @FXML private void goToImageToPdf(MouseEvent e) { navShared(e, "/view/document/ImageToPdfView.fxml"); }
     @FXML private void goToPdfToImage(MouseEvent e) { navShared(e, "/view/document/PdfToImageView.fxml"); }
