@@ -7,65 +7,54 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox spacing="20" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fileforge.controller.HomeController">
+<HBox xmlns="http://javafx.com" xmlns:fx="http://javafx.com"
+      fx:controller="com.fileforge.controller.HomeController"
+      spacing="20" style="-fx-background-color: #ffffff;">
 
     <padding>
-        <Insets bottom="30" left="30" right="30" top="30" />
+        <Insets top="30" right="30" bottom="30" left="30"/>
     </padding>
 
     <!-- LEFT COLUMN: Primary Feature Navigation Grid Dashboard (Expands flexibly) -->
     <VBox spacing="10" HBox.hgrow="ALWAYS">
-        <Label styleClass="page-title" text="Welcome to FileForge" />
-        <Label styleClass="page-subtitle" text="Pick a category to get started" />
+        <Label text="Welcome to FileForge" styleClass="page-title"/>
+        <Label text="Pick a category to get started" styleClass="page-subtitle"/>
 
-        <FlowPane hgap="20" prefHeight="780.0" prefWidth="142.0" styleClass="card-grid" vgap="20">
+        <FlowPane hgap="20" vgap="20" styleClass="card-grid">
             <VBox.margin>
-                <Insets top="25" />
+                <Insets top="25"/>
             </VBox.margin>
 
-            <VBox onMouseClicked="#goToDocument" prefHeight="140" prefWidth="220" styleClass="card, card-document">
-                <Label styleClass="card-icon" text="📄" />
-                <Label styleClass="card-title" text="Document" />
-                <Label styleClass="card-subtitle" text="PDF, Word &amp; document tools" wrapText="true" />
+            <VBox styleClass="card, card-document" prefWidth="220" prefHeight="140" onMouseClicked="#goToDocument">
+                <Label text="📄" styleClass="card-icon"/>
+                <Label text="Document" styleClass="card-title"/>
+                <Label text="PDF, Excel &amp; document tools" styleClass="card-subtitle" wrapText="true"/>
             </VBox>
 
-            <VBox onMouseClicked="#goToImage" prefHeight="140" prefWidth="220" styleClass="card, card-image">
-                <Label styleClass="card-icon" text="🖼" />
-                <Label styleClass="card-title" text="Image" />
-                <Label styleClass="card-subtitle" text="Convert, compress &amp; edit images" wrapText="true" />
+            <VBox styleClass="card, card-image" prefWidth="220" prefHeight="140" onMouseClicked="#goToImage">
+                <Label text="🖼" styleClass="card-icon"/>
+                <Label text="Image" styleClass="card-title"/>
+                <Label text="Convert, compress &amp; edit images" styleClass="card-subtitle" wrapText="true"/>
             </VBox>
 
-            <VBox onMouseClicked="#goToAudio" prefHeight="140" prefWidth="220" styleClass="card, card-audio">
-                <Label styleClass="card-icon" text="🎵" />
-                <Label styleClass="card-title" text="Audio" />
-                <Label styleClass="card-subtitle" text="Convert and edit audio formats" wrapText="true" />
-            </VBox>
-
-            <VBox onMouseClicked="#goToVideo" prefHeight="140" prefWidth="220" styleClass="card, card-video">
-                <Label styleClass="card-icon" text="🎬" />
-                <Label styleClass="card-title" text="Video" />
-                <Label styleClass="card-subtitle" text="Video convert, compress &amp; more" wrapText="true" />
-            </VBox>
-
-            <VBox onMouseClicked="#goToText" prefHeight="140" prefWidth="220" styleClass="card, card-text">
-                <Label styleClass="card-icon" text="✏" />
-                <Label styleClass="card-title" text="Text" />
-                <Label styleClass="card-subtitle" text="Text tools &amp; formatting" wrapText="true" />
+            <VBox styleClass="card, card-text" prefWidth="220" prefHeight="140" onMouseClicked="#goToText">
+                <Label text="✏" styleClass="card-icon"/>
+                <Label text="Text" styleClass="card-title"/>
+                <Label text="Text tools &amp; formatting" styleClass="card-subtitle" wrapText="true"/>
             </VBox>
         </FlowPane>
     </VBox>
 
     <!-- RIGHT COLUMN: Asymmetrical Technical Activity Log Panel (Grows left into workspace) -->
-    <VBox prefWidth="340" minWidth="300" maxWidth="400" spacing="10" styleClass="activity-panel" HBox.hgrow="ALWAYS">
+    <VBox prefWidth="360" minWidth="300" maxWidth="450" spacing="10" styleClass="activity-panel" HBox.hgrow="ALWAYS">
         <padding>
-            <Insets bottom="15" left="15" right="15" top="15" />
+            <Insets top="15" right="15" bottom="15" left="15"/>
         </padding>
 
-        <Label styleClass="card-title" text="Recent Activity Log" />
-        <Label styleClass="card-subtitle" text="Last operations committed locally" />
+        <Label text="Recent Activity Log" styleClass="card-title"/>
+        <Label text="Last operations committed locally" styleClass="card-subtitle"/>
 
-        <!-- Placeholder array data log matching the thinned listview styling tokens -->
-        <ListView fx:id="recentHistoryListView" prefHeight="774.0" prefWidth="259.0" styleClass="list-view" VBox.vgrow="ALWAYS" />
+        <ListView fx:id="recentHistoryListView" VBox.vgrow="ALWAYS" styleClass="list-view"/>
     </VBox>
 
 </HBox>

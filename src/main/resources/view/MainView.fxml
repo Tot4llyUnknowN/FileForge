@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+<BorderPane xmlns="http://javafx.com" xmlns:fx="http://javafx.com"
             fx:controller="com.fileforge.controller.MainController">
 
     <left>
@@ -25,8 +25,6 @@
             <Button text="🏠  Home" styleClass="sidebar-button" onAction="#showHome" maxWidth="Infinity"/>
             <Button text="📄  Document" styleClass="sidebar-button" onAction="#showDocument" maxWidth="Infinity"/>
             <Button text="🖼  Image" styleClass="sidebar-button" onAction="#showImage" maxWidth="Infinity"/>
-            <Button text="🎵  Audio" styleClass="sidebar-button" onAction="#showAudio" maxWidth="Infinity"/>
-            <Button text="🎬  Video" styleClass="sidebar-button" onAction="#showVideo" maxWidth="Infinity"/>
             <Button text="✏  Text" styleClass="sidebar-button" onAction="#showText" maxWidth="Infinity"/>
         </VBox>
     </left>

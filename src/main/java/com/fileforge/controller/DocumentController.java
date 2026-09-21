@@ -4,6 +4,10 @@ import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 
 public class DocumentController {
+    @FXML
+    private void goToDocxToPdf(MouseEvent e) {
+        nav(e, "/view/document/DocxToPdfView.fxml");
+    }
 
     @FXML private void goToDocInfo(MouseEvent e) { nav(e, "/view/document/DocInfoView.fxml"); }
     @FXML private void goToMerger(MouseEvent e) { nav(e, "/view/document/PdfMergerView.fxml"); }
