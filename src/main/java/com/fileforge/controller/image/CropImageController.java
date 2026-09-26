@@ -1,6 +1,7 @@
 package com.fileforge.controller.image;
 
 import com.fileforge.controller.NavigationHelper;
+import com.fileforge.util.ActivityLogger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -153,6 +154,10 @@ public class CropImageController {
         File destination = saveChooser.showSaveDialog(backButton.getScene().getWindow());
         if (destination == null) return;
 
+        // Capture the pre-crop source path now — sourceFile gets reassigned to
+        // the destination below so the user can keep chaining crops on the result.
+        File cropSourceFile = sourceFile;
+
         try {
             BufferedImage croppedSubImage = sourceImage.getSubimage(pixelX, pixelY, pixelW, pixelH);
 
@@ -161,6 +166,7 @@ public class CropImageController {
             ImageIO.write(croppedSubImage, formatName, destination);
 
             statusLabel.setText("Cropped layout successfully committed onto disk!");
+            ActivityLogger.log("Crop Image", cropSourceFile.getAbsolutePath(), destination.getAbsolutePath());
             cropBounds.setVisible(false);
             cropButton.setDisable(true);
 

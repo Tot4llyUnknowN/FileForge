@@ -8,11 +8,14 @@
 
 <VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.fileforge.controller.document.UnlockPdfController"
+      styleClass="content-area"
       spacing="15">
 
     <padding>
         <Insets top="30" right="30" bottom="30" left="30"/>
     </padding>
+
+    <Button fx:id="backButton" text="← Back" onAction="#goBack" styleClass="back-button"/>
 
     <Label text="Unlock PDF" styleClass="page-title"/>
     <Label text="Remove password protection from a PDF" styleClass="page-subtitle"/>
@@ -21,13 +24,12 @@
     <Label fx:id="fileLabel" text="No file selected" styleClass="page-subtitle"/>
 
     <Label text="Password:" styleClass="page-subtitle"/>
-    <PasswordField fx:id="passwordField" promptText="Enter password" maxWidth="300"/>
+    <PasswordField fx:id="passwordField" promptText="Enter password" maxWidth="300" styleClass="text-field"/>
 
     <HBox spacing="10">
-        <Button text="Unlock PDF" onAction="#unlockPdf" styleClass="tool-button"/>
-        <Button fx:id="backButton" text="Back" onAction="#goBack" styleClass="tool-button"/>
+        <Button text="Unlock PDF" onAction="#unlockPdf" styleClass="primary-button"/>
     </HBox>
 
-    <Label fx:id="statusLabel" styleClass="page-subtitle"/>
+    <Label fx:id="statusLabel" styleClass="status-label"/>
 
 </VBox>

@@ -1,6 +1,7 @@
 package com.fileforge.controller.document;
 
 import com.fileforge.controller.NavigationHelper;
+import com.fileforge.util.ActivityLogger;
 import com.fileforge.util.PdfThumbnailUtil;
 import com.fileforge.util.ThumbnailCell;
 import javafx.collections.FXCollections;
@@ -109,6 +110,7 @@ public class ReorderPagesController {
             }
             outputDoc.save(destination);
             showStatus("Saved reordered PDF → " + destination.getName(), false);
+            ActivityLogger.log("Reorder PDF Pages", sourceFile.getAbsolutePath(), destination.getAbsolutePath());
 
         } catch (IOException e) {
             e.printStackTrace();

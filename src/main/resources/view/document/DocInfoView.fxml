@@ -7,11 +7,14 @@
 
 <VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.fileforge.controller.document.DocInfoController"
+      styleClass="content-area"
       spacing="15">
 
     <padding>
         <Insets top="30" right="30" bottom="30" left="30"/>
     </padding>
+
+    <Button fx:id="backButton" text="← Back" onAction="#goBack" styleClass="back-button"/>
 
     <Label text="Document Info" styleClass="page-title"/>
     <Label text="Select a PDF to view its details" styleClass="page-subtitle"/>
@@ -19,7 +22,6 @@
     <Button text="Choose PDF File" onAction="#chooseFile" styleClass="tool-button"/>
 
     <TextArea fx:id="infoArea" editable="false" wrapText="true" prefHeight="250"
-              promptText="File info will appear here"/>
+              promptText="File info will appear here" styleClass="text-area"/>
 
-    <Button fx:id="backButton" text="← Back" onAction="#goBack" styleClass="tool-button"/>
 </VBox>

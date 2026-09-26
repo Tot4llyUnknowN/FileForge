@@ -8,11 +8,14 @@
 
 <VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.fileforge.controller.image.PngToJpgController"
+      styleClass="content-area"
       spacing="15">
 
     <padding>
         <Insets top="30" right="30" bottom="30" left="30"/>
     </padding>
+
+    <Button fx:id="backButton" text="← Back" onAction="#goBack" styleClass="back-button"/>
 
     <Label text="PNG to JPG" styleClass="page-title"/>
     <Label text="Convert a PNG image to JPG format" styleClass="page-subtitle"/>
@@ -23,10 +26,9 @@
     <ImageView fx:id="previewImage" fitWidth="250" preserveRatio="true"/>
 
     <HBox spacing="10">
-        <Button text="Convert to JPG" onAction="#convert" styleClass="tool-button"/>
-        <Button fx:id="backButton" text="Back" onAction="#goBack" styleClass="tool-button"/>
+        <Button text="Convert to JPG" onAction="#convert" styleClass="primary-button"/>
     </HBox>
 
-    <Label fx:id="statusLabel" styleClass="page-subtitle"/>
+    <Label fx:id="statusLabel" styleClass="status-label"/>
 
 </VBox>

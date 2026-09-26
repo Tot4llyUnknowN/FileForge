@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com" xmlns:fx="http://javafx.com"
+      fx:controller="com.fileforge.controller.text.LiveFeedController"
+      spacing="15" style="-fx-background-color: #ffffff;">
+
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30"/>
+    </padding>
+
+    <Button fx:id="backButton" text="← Back" onAction="#goBack" styleClass="back-button"/>
+
+    <Label text="Live Network Feed Inspector" styleClass="page-title"/>
+    <Label text="Asynchronously connect to remote web APIs to parse live JSON streams via Jackson" styleClass="page-subtitle"/>
+
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <Button fx:id="fetchButton" text="Fetch Random JSON Feed" onAction="#handleFetchData" styleClass="primary-button"/>
+        <Label fx:id="statusLabel" text="Awaiting connection parameters..." styleClass="status-label"/>
+    </HBox>
+
+    <Label text="Raw Payload Stream String Received:" styleClass="card-title"/>
+    <TextArea fx:id="jsonResponseDisplay" prefHeight="80" maxWidth="500" editable="false" wrapText="true"
+              style="-fx-font-family: 'Consolas', 'Monospaced'; -fx-font-size: 12px;" styleClass="text-area"/>
+
+    <Label text="Jackson Object Mapping Deserialization Output:" styleClass="card-title"/>
+    <VBox styleClass="activity-panel" prefHeight="70" maxWidth="500" style="-fx-background-color: #f8f9fa;">
+        <padding>
+            <Insets top="15" right="15" bottom="15" left="15"/>
+        </padding>
+        <Label fx:id="adviceDisplayLabel" text="Click fetch to stream online network data strings arrays..."
+               style="-fx-font-style: italic; -fx-font-size: 14px;" wrapText="true" maxWidth="460"/>
+    </VBox>
+</VBox>

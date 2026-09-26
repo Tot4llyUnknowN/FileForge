@@ -1,6 +1,7 @@
 package com.fileforge.controller.document;
 
 import com.fileforge.controller.NavigationHelper;
+import com.fileforge.util.ActivityLogger;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -73,6 +74,8 @@ public class PptxToPdfController {
         statusLabel.setText("Executing high-fidelity visual slide conversion...");
         convertButton.setDisable(true);
 
+        List<File> filesUsed = new ArrayList<>(selectedPptxFiles);
+
         Task<Void> task = new Task<>() {
             @Override
             protected Void call() throws Exception {
@@ -80,7 +83,7 @@ public class PptxToPdfController {
                 try (PDDocument finalPdf = new PDDocument()) {
 
                     // 2. Loop through every selected presentation deck sequentially
-                    for (File pptxFile : selectedPptxFiles) {
+                    for (File pptxFile : filesUsed) {
                         try (FileInputStream fis = new FileInputStream(pptxFile);
                              XMLSlideShow ppt = new XMLSlideShow(fis)) {
 
@@ -137,6 +140,7 @@ public class PptxToPdfController {
 
         task.setOnSucceeded(e -> {
             statusLabel.setText("Converted successfully → " + destinationFile.getName());
+            ActivityLogger.log("PPTX to PDF", ActivityLogger.joinPaths(filesUsed), destinationFile.getAbsolutePath());
             convertButton.setDisable(false);
         });
 

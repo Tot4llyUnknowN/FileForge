@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com" xmlns:fx="http://javafx.com"
+      fx:controller="com.fileforge.controller.SettingsController"
+      styleClass="content-area"
+      spacing="20">
+
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30"/>
+    </padding>
+
+    <Label text="Global Preferences Control Center" styleClass="page-title"/>
+    <Label text="Configure visual identities and concurrency processing parameters directly inside settings.json" styleClass="page-subtitle"/>
+
+    <HBox spacing="20" alignment="CENTER_LEFT">
+        <VBox spacing="5" prefWidth="220">
+            <Label text="Workspace Visual Theme Layout:" styleClass="card-title"/>
+            <ComboBox fx:id="themeComboBox" prefWidth="200" styleClass="combo-box"/>
+        </VBox>
+
+        <VBox spacing="5" prefWidth="220">
+            <Label text="Global Typographic Font Family:" styleClass="card-title"/>
+            <ComboBox fx:id="fontComboBox" prefWidth="200" styleClass="combo-box"/>
+        </VBox>
+    </HBox>
+
+    <VBox spacing="5" maxWidth="460">
+        <Label text="Default Export Storage Target Location Path:" styleClass="card-title"/>
+        <TextField fx:id="exportDirectoryField" styleClass="text-field" promptText="e.g. C:\Outputs"/>
+    </VBox>
+
+    <HBox spacing="20" alignment="CENTER_LEFT">
+        <VBox spacing="5" prefWidth="220">
+            <Label text="Max Concurrency Task Threads Pool:" styleClass="card-title"/>
+            <ComboBox fx:id="threadsComboBox" prefWidth="200" styleClass="combo-box"/>
+        </VBox>
+
+        <VBox spacing="5" alignment="BOTTOM_LEFT" prefHeight="50">
+            <CheckBox fx:id="overwriteCheckbox" text="Auto-overwrite existing output destination target items" styleClass="page-subtitle"/>
+        </VBox>
+    </HBox>
+
+    <HBox spacing="15" alignment="CENTER_LEFT" style="-fx-padding: 10 0 0 0;">
+        <Button text="Commit Changes" onAction="#handleSaveConfiguration" styleClass="primary-button"/>
+        <Label fx:id="statusMessageLabel" text="System preferences synchronized cleanly." styleClass="status-label"/>
+    </HBox>
+
+</VBox>

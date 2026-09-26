@@ -10,6 +10,7 @@
 
 <VBox xmlns="http://javafx.com" xmlns:fx="http://javafx.com"
       fx:controller="com.fileforge.controller.image.CropImageController"
+      styleClass="content-area"
       spacing="15">
 
     <padding>
@@ -26,8 +27,7 @@
         <Label fx:id="fileLabel" text="No file selected" styleClass="page-subtitle"/>
     </HBox>
 
-    <!-- Structural layers stack framing viewport actions -->
-    <StackPane alignment="TOP_LEFT" style="-fx-background-color: #f8f9fa; -fx-border-color: #e2e8f0; -fx-border-radius: 8;" maxWidth="600" maxHeight="400">
+    <StackPane alignment="TOP_LEFT" styleClass="preview-pane" maxWidth="600" maxHeight="400">
         <Pane fx:id="imagePane" onMousePressed="#handleMousePressed" onMouseDragged="#handleMouseDragged">
             <ImageView fx:id="previewImage" fitWidth="600" fitHeight="400" preserveRatio="true"/>
         </Pane>

@@ -7,16 +7,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<!-- Added fx:id="mainRootContainer" to target properties bindings dynamically -->
 <HBox fx:id="mainRootContainer" xmlns="http://javafx.com" xmlns:fx="http://javafx.com"
       fx:controller="com.fileforge.controller.HomeController"
-      spacing="20" style="-fx-background-color: #ffffff;">
+      spacing="20">
 
     <padding>
         <Insets top="30" right="30" bottom="30" left="30"/>
     </padding>
 
-    <!-- LEFT COLUMN: Primary Feature Navigation Grid Dashboard (Added fx:id="leftNavigationColumn") -->
     <VBox fx:id="leftNavigationColumn" spacing="10" HBox.hgrow="ALWAYS">
         <Label text="Welcome to FileForge" styleClass="page-title"/>
         <Label text="Pick a category to get started" styleClass="page-subtitle"/>
@@ -26,36 +24,34 @@
                 <Insets top="25"/>
             </VBox.margin>
 
-            <VBox styleClass="card, card-document" prefWidth="220" prefHeight="140" onMouseClicked="#goToDocument">
+            <VBox styleClass="card, card-document" prefWidth="220" prefHeight="140" onMouseClicked="#goToDocument" style="-fx-cursor: hand;">
                 <Label text="📄" styleClass="card-icon"/>
                 <Label text="Document" styleClass="card-title"/>
-                <Label text="PDF, Excel &amp; document tools" styleClass="card-subtitle" wrapText="true"/>
+                <Label text="PDF &amp; Word processing tools" styleClass="card-subtitle" wrapText="true"/>
             </VBox>
 
-            <VBox styleClass="card, card-image" prefWidth="220" prefHeight="140" onMouseClicked="#goToImage">
+            <VBox styleClass="card, card-image" prefWidth="220" prefHeight="140" onMouseClicked="#goToImage" style="-fx-cursor: hand;">
                 <Label text="🖼" styleClass="card-icon"/>
                 <Label text="Image" styleClass="card-title"/>
                 <Label text="Convert, compress &amp; edit images" styleClass="card-subtitle" wrapText="true"/>
             </VBox>
 
-            <VBox styleClass="card, card-text" prefWidth="220" prefHeight="140" onMouseClicked="#goToText">
+            <VBox styleClass="card, card-text" prefWidth="220" prefHeight="140" onMouseClicked="#goToText" style="-fx-cursor: hand;">
                 <Label text="✏" styleClass="card-icon"/>
                 <Label text="Text" styleClass="card-title"/>
-                <Label text="Text tools &amp; formatting" styleClass="card-subtitle" wrapText="true"/>
+                <Label text="Text tools &amp; formatting utilities" styleClass="card-subtitle" wrapText="true"/>
             </VBox>
         </FlowPane>
     </VBox>
 
-    <!-- RIGHT COLUMN: Asymmetrical Technical Activity Log Panel (Added fx:id="rightActivityColumn") -->
     <VBox fx:id="rightActivityColumn" spacing="10" styleClass="activity-panel">
         <padding>
             <Insets top="15" right="15" bottom="15" left="15"/>
         </padding>
 
         <Label text="Recent Activity Log" styleClass="card-title"/>
-        <Label text="Last operations committed locally" styleClass="card-subtitle"/>
+        <Label text="Automatically recorded tool operations" styleClass="card-subtitle"/>
 
         <ListView fx:id="recentHistoryListView" VBox.vgrow="ALWAYS" styleClass="list-view"/>
     </VBox>
-
 </HBox>

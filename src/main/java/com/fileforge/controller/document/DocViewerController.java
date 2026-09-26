@@ -1,6 +1,7 @@
 package com.fileforge.controller.document;
 
 import com.fileforge.controller.NavigationHelper;
+import com.fileforge.util.ActivityLogger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -48,6 +49,9 @@ public class DocViewerController {
             pageLabel.setText("Error loading document: " + e.getMessage());
             return;
         }
+
+        // View-only operation: no output file is produced/saved, so log source only.
+        ActivityLogger.log("View PDF Document", selectedFile.getAbsolutePath());
 
         renderCurrentPage();
     }

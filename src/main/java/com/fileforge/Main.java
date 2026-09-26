@@ -7,6 +7,8 @@ import javafx.scene.Parent;
 import javafx.stage.Stage;
 import java.io.IOException;
 
+import com.fileforge.database.SettingsEngine;
+
 public class Main extends Application {
 
     @Override
@@ -16,6 +18,10 @@ public class Main extends Application {
 
         Scene scene = new Scene(root, 1000, 650);
         scene.getStylesheets().add(Main.class.getResource("/css/app.css").toExternalForm());
+
+        // Apply the dark-theme style class (if active) to the actual scene root,
+        // now that the Scene exists.
+        SettingsEngine.applyVisualStyles(root);
 
         primaryStage.setTitle("FileForge");
         primaryStage.setScene(scene);

@@ -1,6 +1,7 @@
 package com.fileforge.controller.image;
 
 import com.fileforge.controller.NavigationHelper;
+import com.fileforge.util.ActivityLogger;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -92,6 +93,9 @@ public class CompressImageController {
                     }
                 }
                 final int finalSuccess = successCount;
+                if (finalSuccess > 0) {
+                    ActivityLogger.log("Compress Images", ActivityLogger.joinPaths(selectedFiles), outputDir.getAbsolutePath());
+                }
                 javafx.application.Platform.runLater(() -> {
                     statusLabel.setText("Compressed " + finalSuccess + " images exactly to target size!");
                     compressButton.setDisable(false);

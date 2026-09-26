@@ -8,10 +8,12 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.fileforge.controller.image.ResizeImageController"
+      styleClass="content-area"
       spacing="15">
 
     <padding>
@@ -24,11 +26,13 @@
     <Label text="Resize by exact dimensions or by percentage" styleClass="page-subtitle"/>
 
     <HBox spacing="10" alignment="CENTER_LEFT">
-        <Button text="Select Image" onAction="#handleSelectImage"/>
+        <Button text="Select Image" onAction="#handleSelectImage" styleClass="tool-button"/>
         <Label fx:id="sourceFileLabel" text="No file selected" styleClass="file-label"/>
     </HBox>
 
-    <ImageView fx:id="previewImage" fitWidth="200" fitHeight="200" preserveRatio="true"/>
+    <StackPane prefHeight="300" maxWidth="600" styleClass="preview-pane">
+        <ImageView fx:id="previewImage" fitWidth="250" fitHeight="280" preserveRatio="true"/>
+    </StackPane>
 
     <Label fx:id="dimensionsLabel" text="" styleClass="field-label"/>
 
@@ -36,20 +40,20 @@
         <fx:define>
             <ToggleGroup fx:id="modeGroup"/>
         </fx:define>
-        <RadioButton fx:id="exactModeRadio" text="Exact size (px)" toggleGroup="$modeGroup" selected="true" onAction="#handleModeChanged"/>
-        <RadioButton fx:id="percentModeRadio" text="Percentage" toggleGroup="$modeGroup" onAction="#handleModeChanged"/>
+        <RadioButton fx:id="exactModeRadio" text="Exact size (px)" toggleGroup="$modeGroup" selected="true" onAction="#handleModeChanged" styleClass="theme-radio"/>
+        <RadioButton fx:id="percentModeRadio" text="Percentage" toggleGroup="$modeGroup" onAction="#handleModeChanged" styleClass="theme-radio"/>
     </HBox>
 
     <HBox fx:id="exactSizeBox" spacing="10" alignment="CENTER_LEFT">
-        <Label text="Width (px):"/>
-        <TextField fx:id="widthField" prefWidth="100"/>
-        <Label text="Height (px):"/>
-        <TextField fx:id="heightField" prefWidth="100"/>
+        <Label text="Width (px):" styleClass="field-label"/>
+        <TextField fx:id="widthField" prefWidth="100" styleClass="text-field"/>
+        <Label text="Height (px):" styleClass="field-label"/>
+        <TextField fx:id="heightField" prefWidth="100" styleClass="text-field"/>
     </HBox>
 
     <HBox fx:id="percentBox" spacing="10" alignment="CENTER_LEFT" visible="false" managed="false">
-        <Label text="Scale (%):"/>
-        <TextField fx:id="scaleField" prefWidth="100" promptText="e.g. 50"/>
+        <Label text="Scale (%):" styleClass="field-label"/>
+        <TextField fx:id="scaleField" prefWidth="100" promptText="e.g. 50" styleClass="text-field"/>
     </HBox>
 
     <HBox spacing="15" alignment="CENTER_LEFT">

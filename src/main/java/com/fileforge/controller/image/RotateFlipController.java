@@ -1,6 +1,7 @@
 package com.fileforge.controller.image;
 
 import com.fileforge.controller.NavigationHelper;
+import com.fileforge.util.ActivityLogger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -155,6 +156,10 @@ public class RotateFlipController {
     private void saveImage() {
         if (currentImage == null || sourceFile == null) return;
 
+        // Capture the pre-save source path — sourceFile is reassigned to the
+        // destination below once saving succeeds, for continuous editing.
+        File preSaveSourceFile = sourceFile;
+
         FileChooser saveChooser = new FileChooser();
         saveChooser.setTitle("Save Transformed Image As");
         String ext = getExtension(sourceFile.getName());
@@ -169,6 +174,7 @@ public class RotateFlipController {
             String formatName = ext.equalsIgnoreCase("jpg") ? "jpeg" : ext.toLowerCase();
             ImageIO.write(currentImage, formatName, destination);
             statusLabel.setText("Transformed changes committed onto disk: " + destination.getName());
+            ActivityLogger.log("Rotate/Flip Image", preSaveSourceFile.getAbsolutePath(), destination.getAbsolutePath());
 
             // Re-bootstrap workspace states cleanly
             sourceFile = destination;

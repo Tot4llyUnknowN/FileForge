@@ -1,6 +1,7 @@
 package com.fileforge.controller.document;
 
 import com.fileforge.controller.NavigationHelper;
+import com.fileforge.util.ActivityLogger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -47,6 +48,9 @@ public class DocInfoController {
             sb.append("Encrypted: ").append(document.isEncrypted()).append("\n");
 
             infoArea.setText(sb.toString());
+
+            // View-only operation: no output file is produced/saved, so log source only.
+            ActivityLogger.log("View PDF Info", file.getAbsolutePath());
 
         } catch (IOException e) {
             infoArea.setText("Error reading PDF: " + e.getMessage());

@@ -1,6 +1,7 @@
 package com.fileforge.controller.document;
 
 import com.fileforge.controller.NavigationHelper;
+import com.fileforge.util.ActivityLogger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -116,6 +117,7 @@ public class ExcelToCsvController {
             }
 
             statusLabel.setText("CSV saved successfully: " + outputFile.getName());
+            ActivityLogger.log("Excel to CSV", selectedFile.getAbsolutePath(), outputFile.getAbsolutePath());
 
         } catch (IOException e) {
             statusLabel.setText("Error converting to CSV: " + e.getMessage());

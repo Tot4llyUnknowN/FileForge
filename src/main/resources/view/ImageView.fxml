@@ -6,6 +6,7 @@
 
 <VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.fileforge.controller.ImageController"
+      styleClass="content-area"
       spacing="10">
 
     <padding>
@@ -21,42 +22,52 @@
         </VBox.margin>
 
         <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToJpgToPng">
+            <Label text="🔄" styleClass="card-icon"/>
             <Label text="JPG to PNG" styleClass="card-title"/>
         </VBox>
 
         <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToPngToJpg">
+            <Label text="🔁" styleClass="card-icon"/>
             <Label text="PNG to JPG" styleClass="card-title"/>
         </VBox>
 
         <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToWebpToJpg">
+            <Label text="🌐" styleClass="card-icon"/>
             <Label text="WEBP to JPG" styleClass="card-title"/>
         </VBox>
 
         <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToImageToPdf">
+            <Label text="🖼" styleClass="card-icon"/>
             <Label text="Image to PDF" styleClass="card-title"/>
         </VBox>
 
         <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToPdfToImage">
+            <Label text="📤" styleClass="card-icon"/>
             <Label text="PDF to Image" styleClass="card-title"/>
         </VBox>
 
         <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToResize">
+            <Label text="📐" styleClass="card-icon"/>
             <Label text="Resize Image" styleClass="card-title"/>
         </VBox>
 
         <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToCompress">
+            <Label text="🗜" styleClass="card-icon"/>
             <Label text="Compress Image" styleClass="card-title"/>
         </VBox>
 
         <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToCrop">
+            <Label text="✂" styleClass="card-icon"/>
             <Label text="Crop Image" styleClass="card-title"/>
         </VBox>
 
         <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToRotateFlip">
+            <Label text="🔃" styleClass="card-icon"/>
             <Label text="Rotate and Flip" styleClass="card-title"/>
         </VBox>
 
         <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToMetadata">
+            <Label text="🔍" styleClass="card-icon"/>
             <Label text="Metadata Viewer" styleClass="card-title"/>
         </VBox>
 

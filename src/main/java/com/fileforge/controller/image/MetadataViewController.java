@@ -1,6 +1,7 @@
 package com.fileforge.controller.image;
 
 import com.fileforge.controller.NavigationHelper;
+import com.fileforge.util.ActivityLogger;
 import com.drew.imaging.ImageMetadataReader;
 import com.drew.metadata.Directory;
 import com.drew.metadata.Tag;
@@ -68,6 +69,9 @@ public class MetadataViewController {
             } else {
                 statusLabel.setText("Successfully parsed " + metadataTable.getItems().size() + " metadata fields!");
             }
+
+            // View-only operation: no output file is produced/saved, so log source only.
+            ActivityLogger.log("View Image Metadata", file.getAbsolutePath());
 
         } catch (Exception e) {
             statusLabel.setText("Failed to parse metadata: " + e.getMessage());

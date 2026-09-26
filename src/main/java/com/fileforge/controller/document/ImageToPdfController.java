@@ -1,6 +1,7 @@
 package com.fileforge.controller.document;
 
 import com.fileforge.controller.NavigationHelper;
+import com.fileforge.util.ActivityLogger;
 import com.fileforge.util.ThumbnailCell;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +21,7 @@ import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -100,12 +102,15 @@ public class ImageToPdfController {
         File destination = saveChooser.showSaveDialog(window);
         if (destination == null) return;
 
+        List<File> imagesUsed = new ArrayList<>(selectedImages);
+
         try (PDDocument document = new PDDocument()) {
-            for (File imageFile : selectedImages) {
+            for (File imageFile : imagesUsed) {
                 addImagePage(document, imageFile);
             }
             document.save(destination);
-            showStatus("Created PDF with " + selectedImages.size() + " page(s) → " + destination.getName(), false);
+            showStatus("Created PDF with " + imagesUsed.size() + " page(s) → " + destination.getName(), false);
+            ActivityLogger.log("Images to PDF", ActivityLogger.joinPaths(imagesUsed), destination.getAbsolutePath());
 
         } catch (IOException e) {
             e.printStackTrace();

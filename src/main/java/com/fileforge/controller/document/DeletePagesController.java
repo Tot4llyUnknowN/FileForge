@@ -1,6 +1,7 @@
 package com.fileforge.controller.document;
 
 import com.fileforge.controller.NavigationHelper;
+import com.fileforge.util.ActivityLogger;
 import com.fileforge.util.PdfThumbnailUtil;
 import com.fileforge.util.ThumbnailCell;
 import javafx.collections.FXCollections;
@@ -121,6 +122,7 @@ public class DeletePagesController {
             }
             doc.save(destination);
             showStatus("Deleted " + selectedForDeletion.size() + " page(s) → " + destination.getName(), false);
+            ActivityLogger.log("Delete PDF Pages", sourceFile.getAbsolutePath(), destination.getAbsolutePath());
 
         } catch (IOException e) {
             e.printStackTrace();

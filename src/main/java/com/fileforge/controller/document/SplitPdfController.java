@@ -1,6 +1,7 @@
 package com.fileforge.controller.document;
 
 import com.fileforge.controller.NavigationHelper;
+import com.fileforge.util.ActivityLogger;
 import com.fileforge.util.PdfThumbnailUtil;
 import com.fileforge.util.ThumbnailCell;
 import javafx.collections.FXCollections;
@@ -166,6 +167,9 @@ public class SplitPdfController {
             }
 
             showStatus("Split into " + successCount + " file(s) → " + outputFolder.getAbsolutePath(), false);
+            if (successCount > 0) {
+                ActivityLogger.log("Split PDF", sourceFile.getAbsolutePath(), outputFolder.getAbsolutePath());
+            }
 
         } catch (IOException e) {
             e.printStackTrace();

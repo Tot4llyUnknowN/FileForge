@@ -1,6 +1,7 @@
 package com.fileforge.controller.document;
 
 import com.fileforge.controller.NavigationHelper;
+import com.fileforge.util.ActivityLogger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -66,6 +67,7 @@ public class UnlockPdfController {
             document.setAllSecurityToBeRemoved(true);
             document.save(outputFile);
             statusLabel.setText("PDF unlocked successfully: " + outputFile.getName());
+            ActivityLogger.log("Unlock PDF", selectedFile.getAbsolutePath(), outputFile.getAbsolutePath());
 
         } catch (InvalidPasswordException e) {
             statusLabel.setText("Incorrect password.");

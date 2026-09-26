@@ -1,6 +1,7 @@
 package com.fileforge.controller.document;
 
 import com.fileforge.controller.NavigationHelper;
+import com.fileforge.util.ActivityLogger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -84,6 +85,7 @@ public class PdfToImageController {
             }
 
             showStatus("Converted " + pageCount + " page(s) → " + outputFolder.getAbsolutePath(), false);
+            ActivityLogger.log("PDF to Images", sourceFile.getAbsolutePath(), outputFolder.getAbsolutePath());
 
         } catch (IOException e) {
             e.printStackTrace();

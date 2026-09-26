@@ -7,8 +7,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+<VBox xmlns="http://javafx.com" xmlns:fx="http://javafx.com"
       fx:controller="com.fileforge.controller.TextController"
+      styleClass="content-area"
       spacing="15">
 
     <padding>
@@ -19,10 +20,10 @@
     <Label text="Enter or paste text below, then choose an action" styleClass="page-subtitle"/>
 
     <TextArea fx:id="inputArea" promptText="Enter or paste text here"
-              wrapText="true" prefHeight="150"/>
+              wrapText="true" prefHeight="150" styleClass="text-area"/>
 
     <TextArea fx:id="resultArea" promptText="Result will appear here"
-              wrapText="true" prefHeight="80" editable="false"/>
+              wrapText="true" prefHeight="80" editable="false" styleClass="text-area"/>
 
     <HBox spacing="10">
         <Button text="Word Count" onAction="#wordCount" styleClass="tool-button"/>

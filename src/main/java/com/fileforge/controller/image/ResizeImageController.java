@@ -1,6 +1,7 @@
 package com.fileforge.controller.image;
 
 import com.fileforge.controller.NavigationHelper;
+import com.fileforge.util.ActivityLogger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -129,6 +130,7 @@ public class ResizeImageController {
             ImageIO.write(resized, formatName, destination);
 
             statusLabel.setText("Resized to " + targetWidth + " x " + targetHeight + " px → " + destination.getName());
+            ActivityLogger.log("Resize Image", sourceFile.getAbsolutePath(), destination.getAbsolutePath());
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -184,6 +186,6 @@ public class ResizeImageController {
 
     @FXML
     private void goBack() {
-        NavigationHelper.goBack(backButton);
+        NavigationHelper.navigate(backButton, "/view/ImageView.fxml");
     }
 }

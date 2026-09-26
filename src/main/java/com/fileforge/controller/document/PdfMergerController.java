@@ -1,6 +1,7 @@
 package com.fileforge.controller.document;
 
 import com.fileforge.controller.NavigationHelper;
+import com.fileforge.util.ActivityLogger;
 import com.fileforge.util.PdfThumbnailUtil;
 import com.fileforge.util.ThumbnailCell;
 import javafx.collections.FXCollections;
@@ -20,6 +21,7 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -105,13 +107,15 @@ public class PdfMergerController {
 
         try {
             PDFMergerUtility merger = new PDFMergerUtility();
-            for (File file : selectedFiles) {
+            List<File> mergedSources = new ArrayList<>(selectedFiles);
+            for (File file : mergedSources) {
                 merger.addSource(file);
             }
             merger.setDestinationFileName(destination.getAbsolutePath());
             merger.mergeDocuments(IOUtils.createTempFileOnlyStreamCache());
 
             showStatus("Merged successfully → " + destination.getName(), false);
+            ActivityLogger.log("Merge PDFs", ActivityLogger.joinPaths(mergedSources), destination.getAbsolutePath());
         } catch (IOException e) {
             e.printStackTrace();
             showStatus("Merge failed: " + e.getMessage(), true);

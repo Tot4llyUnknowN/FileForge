@@ -9,6 +9,7 @@
 
 <VBox xmlns="http://javafx.com" xmlns:fx="http://javafx.com"
       fx:controller="com.fileforge.controller.image.RotateFlipController"
+      styleClass="content-area"
       spacing="15">
 
     <padding>
@@ -25,12 +26,10 @@
         <Label fx:id="fileLabel" text="No file selected" styleClass="page-subtitle"/>
     </HBox>
 
-    <!-- Structural transform panel center workspace -->
-    <StackPane prefHeight="350" maxWidth="600" style="-fx-background-color: #f8f9fa; -fx-border-color: #e2e8f0; -fx-border-radius: 8;">
+    <StackPane prefHeight="350" maxWidth="600" styleClass="preview-pane">
         <ImageView fx:id="previewImage" fitWidth="550" fitHeight="320" preserveRatio="true"/>
     </StackPane>
 
-    <!-- Operational modification control grid -->
     <HBox spacing="10" alignment="CENTER_LEFT">
         <Button text="↩ 90° CCW" onAction="#rotate90CCW" styleClass="tool-button"/>
         <Button text="↪ 90° CW" onAction="#rotate90CW" styleClass="tool-button"/>

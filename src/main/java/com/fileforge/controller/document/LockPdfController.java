@@ -1,6 +1,7 @@
 package com.fileforge.controller.document;
 
 import com.fileforge.controller.NavigationHelper;
+import com.fileforge.util.ActivityLogger;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -87,6 +88,7 @@ public class LockPdfController {
             document.save(outputFile);
 
             statusLabel.setText("PDF locked successfully: " + outputFile.getName());
+            ActivityLogger.log("Lock PDF", selectedFile.getAbsolutePath(), outputFile.getAbsolutePath());
 
         } catch (IOException e) {
             statusLabel.setText("Error locking PDF: " + e.getMessage());

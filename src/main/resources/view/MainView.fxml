@@ -11,26 +11,30 @@
             fx:controller="com.fileforge.controller.MainController">
 
     <left>
-        <VBox styleClass="sidebar" prefWidth="200.0" spacing="0">
+        <VBox styleClass="activity-panel, sidebar" prefWidth="200.0" spacing="5">
             <padding>
-                <Insets top="20" right="0" bottom="20" left="0"/>
+                <Insets top="20" right="10" bottom="20" left="10"/>
             </padding>
 
-            <Label text="FileForge" styleClass="sidebar-title">
+            <Label text="FileForge" styleClass="page-title" style="-fx-font-weight: bold; -fx-font-size: 18px;">
                 <VBox.margin>
-                    <Insets bottom="25" left="20"/>
+                    <Insets bottom="25" left="10"/>
                 </VBox.margin>
             </Label>
 
-            <Button text="🏠  Home" styleClass="sidebar-button" onAction="#showHome" maxWidth="Infinity"/>
-            <Button text="📄  Document" styleClass="sidebar-button" onAction="#showDocument" maxWidth="Infinity"/>
-            <Button text="🖼  Image" styleClass="sidebar-button" onAction="#showImage" maxWidth="Infinity"/>
-            <Button text="✏  Text" styleClass="sidebar-button" onAction="#showText" maxWidth="Infinity"/>
+            <Button text="🏠  Home" styleClass="tool-button" onAction="#showHome" maxWidth="Infinity" alignment="BASELINE_LEFT"/>
+            <Button text="📄  Document" styleClass="tool-button" onAction="#showDocument" maxWidth="Infinity" alignment="BASELINE_LEFT"/>
+            <Button text="🖼  Image" styleClass="tool-button" onAction="#showImage" maxWidth="Infinity" alignment="BASELINE_LEFT"/>
+            <Button text="✏  Text" styleClass="tool-button" onAction="#showText" maxWidth="Infinity" alignment="BASELINE_LEFT"/>
+
+            <VBox VBox.vgrow="ALWAYS"/>
+
+            <Button text="⚙  Settings" styleClass="tool-button" onAction="#showSettings" maxWidth="Infinity" alignment="BASELINE_LEFT"/>
         </VBox>
     </left>
 
     <center>
-        <StackPane fx:id="contentArea" styleClass="content-area"/>
+        <StackPane fx:id="contentArea" id="contentArea" styleClass="content-area"/>
     </center>
 
 </BorderPane>

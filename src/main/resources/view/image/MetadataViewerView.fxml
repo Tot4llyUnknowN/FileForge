@@ -9,6 +9,7 @@
 
 <VBox xmlns="http://javafx.com" xmlns:fx="http://javafx.com"
       fx:controller="com.fileforge.controller.image.MetadataViewController"
+      styleClass="content-area"
       spacing="15">
 
     <padding>
@@ -25,7 +26,6 @@
         <Label fx:id="fileLabel" text="No file selected" styleClass="page-subtitle"/>
     </HBox>
 
-    <!-- Unified Metadata Display Grid System -->
     <TableView fx:id="metadataTable" prefHeight="320" maxWidth="750" styleClass="list-view">
         <columns>
             <TableColumn fx:id="categoryColumn" text="Category Block" prefWidth="180"/>

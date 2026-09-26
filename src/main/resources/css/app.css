@@ -56,6 +56,34 @@
     -fx-text-fill: #222222;
 }
 
+/* FIX: these three classes are used throughout the FXML (file/output
+   labels, resize/quality field labels, status messages) but previously
+   had NO rule anywhere in this stylesheet, so they fell back to
+   JavaFX's default black text — invisible once the background turned
+   dark. */
+.file-label, .field-label {
+    -fx-font-size: 13px;
+    -fx-text-fill: #374151;
+}
+
+.theme-radio, .theme-checkbox {
+    -fx-text-fill: #111111;
+}
+
+.status-label {
+    -fx-font-size: 13px;
+    -fx-text-fill: #374151;
+}
+
+/* FIX: shared class for image preview panes (Crop, Rotate & Flip) that
+   previously had their background/border hardcoded inline in FXML,
+   completely bypassing theming. */
+.preview-pane {
+    -fx-background-color: #f8f9fa;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 8;
+}
+
 /*
    Handcrafted Retro Grid Tiles
    - RETAINED: Left bolded at 1.5px with a 360-degree ambient drop shadow footprint
@@ -80,8 +108,12 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.12), 14, 0.0, 0, 0);
 }
 
+/* FIX: explicit text-fill so the icon glyph color is never left to an
+   inherited/default value — needed so the dark-theme override below
+   has a real light-mode color to override in the first place. */
 .card-icon {
     -fx-font-size: 24px;
+    -fx-text-fill: #111111;
 }
 
 .card-title {
@@ -181,4 +213,192 @@
     -fx-background-color: #ffffff;
     -fx-border-color: #4b5563; /* Refined thin 1px weight border inside the panel panel */
     -fx-border-width: 1px;
+}
+
+/* ==========================================================================
+   FileForge Dark Theme - "STUDIO_DARK"
+   Applied when SettingsEngine adds the "dark-theme" style class to the
+   scene root (see Main.java / SettingsController.java).
+   Mirrors every selector in the light theme above 1:1.
+   ========================================================================== */
+
+.root.dark-theme {
+    -fx-background-color: #1e1f22;
+}
+
+.dark-theme .sidebar {
+    -fx-background-color: #2b2d31;
+    -fx-border-color: #000000 #000000 #000000 #000000;
+}
+
+.dark-theme .sidebar-title {
+    -fx-text-fill: #ffffff;
+    -fx-background-color: linear-gradient(to right, #000048, #0b3d5c);
+}
+
+.dark-theme .sidebar-button {
+    -fx-text-fill: #e0e0e0;
+}
+
+.dark-theme .sidebar-button:hover {
+    -fx-background-color: #0b3d8c;
+    -fx-text-fill: #ffffff;
+}
+
+.dark-theme .content-area {
+    -fx-background-color: #1e1f22;
+}
+
+.dark-theme .page-title {
+    -fx-text-fill: #f2f2f2;
+}
+
+.dark-theme .page-subtitle {
+    -fx-text-fill: #b5b8bd;
+}
+
+/* FIX: these were previously undefined in dark mode too — same gray-
+   on-gray / invisible-text problem as page-subtitle had before. */
+.dark-theme .file-label,
+.dark-theme .field-label,
+.dark-theme .status-label {
+    -fx-text-fill: #b5b8bd;
+}
+
+.dark-theme .theme-radio,
+.dark-theme .theme-checkbox {
+    -fx-text-fill: #b5b8bd;
+}
+
+/* FIX: dark counterpart for the shared preview-pane class (Crop,
+   Rotate & Flip) — replaces what used to be a hardcoded white inline
+   style in FXML. */
+.dark-theme .preview-pane {
+    -fx-background-color: #2b2d31;
+    -fx-border-color: #6b7076;
+    -fx-border-radius: 8;
+}
+
+.dark-theme .card {
+    -fx-background-color: #2b2d31;
+    -fx-border-color: #9aa0a6;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.35), 10, 0.0, 0, 0);
+}
+
+.dark-theme .card:hover {
+    -fx-background-color: #34363b;
+    -fx-border-color: #ffffff;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.5), 14, 0.0, 0, 0);
+}
+
+/* FIX: card icon glyphs (emoji rendered via monochrome fallback glyph
+   on Windows) were invisible in dark mode — they inherited a dark
+   default fill with no explicit override. Now matches card-title's
+   light color. */
+.dark-theme .card-icon {
+    -fx-text-fill: #f2f2f2;
+}
+
+.dark-theme .card-title {
+    -fx-text-fill: #f2f2f2;
+}
+
+.dark-theme .card-subtitle {
+    -fx-text-fill: #b5b8bd;
+}
+
+.dark-theme .card-document,
+.dark-theme .card-image,
+.dark-theme .card-audio,
+.dark-theme .card-video,
+.dark-theme .card-text {
+    -fx-background-color: #2b2d31;
+}
+
+.dark-theme .text-area,
+.dark-theme .text-field {
+    -fx-background-color: #26282c;
+    -fx-border-color: #6b7076;
+    -fx-text-fill: #f2f2f2;
+}
+
+/* FIX: TextArea/TextField backgrounds only visually render via their
+   nested ".content" region — setting -fx-background-color on the
+   control itself isn't enough to color the visible inner box. */
+.dark-theme .text-area .content {
+    -fx-background-color: #26282c;
+}
+
+.dark-theme .text-area:focused,
+.dark-theme .text-field:focused {
+    -fx-border-color: #ffffff;
+}
+
+/* FIX: generic fallback for any Button left without a specific style
+   class in FXML (e.g. PDF Merger's "Add Files"/"Remove Selected"/
+   "Clear", Split PDF's "Select PDF"/"Choose Output Folder"). These
+   otherwise fall back to the plain default JavaFX button skin
+   (light gray/white) regardless of theme. This block MUST come
+   BEFORE .tool-button/.primary-button/.back-button below: both have
+   identical specificity (one class selector under .dark-theme), so
+   whichever is declared LAST wins on a tie — keeping this one first
+   lets the more specific button classes correctly override it. */
+.dark-theme .button {
+    -fx-background-color: #34363b;
+    -fx-text-fill: #f2f2f2;
+    -fx-border-color: #6b7076;
+}
+
+.dark-theme .tool-button,
+.dark-theme .primary-button,
+.dark-theme .back-button {
+    -fx-background-color: #34363b;
+    -fx-border-color: #6b7076;
+    -fx-text-fill: #f2f2f2;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.25), 3, 0.0, 0, 0);
+}
+
+.dark-theme .tool-button:hover,
+.dark-theme .primary-button:hover,
+.dark-theme .back-button:hover {
+    -fx-background-color: #3f4147;
+    -fx-border-color: #ffffff;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.35), 4, 0.0, 0, 0);
+}
+
+.dark-theme .tool-button:armed,
+.dark-theme .primary-button:armed,
+.dark-theme .back-button:armed {
+    -fx-background-color: #202124;
+    -fx-border-color: #ffffff;
+}
+
+.dark-theme .thumbnail-selected {
+    -fx-background-color: #0b3d8c;
+    -fx-border-color: #ffffff;
+}
+
+/* FIX: list-cell backgrounds (including empty filler cells in
+   horizontal thumbnail ListViews, and PDF/page thumbnail strips)
+   come from -fx-control-inner-background / -fx-control-inner-background-alt,
+   NOT from .list-view's own -fx-background-color. Without these,
+   individual cells fall back to Modena's default white. */
+.dark-theme .list-view {
+    -fx-background-color: #26282c;
+    -fx-border-color: #6b7076;
+    -fx-control-inner-background: #26282c;
+    -fx-control-inner-background-alt: #26282c;
+}
+
+.dark-theme .activity-panel {
+    -fx-background-color: #2b2d31;
+    -fx-border-color: #9aa0a6;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 10, 0.0, 0, 0);
+}
+
+.dark-theme .activity-panel .list-view {
+    -fx-background-color: #26282c;
+    -fx-border-color: #6b7076;
+    -fx-control-inner-background: #26282c;
+    -fx-control-inner-background-alt: #26282c;
 }

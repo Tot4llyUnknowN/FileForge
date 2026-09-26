@@ -9,7 +9,7 @@
 
 <VBox xmlns="http://javafx.com" xmlns:fx="http://javafx.com"
       fx:controller="com.fileforge.controller.document.PptxToPdfController"
-      spacing="15" style="-fx-background-color: #ffffff;">
+      spacing="15">
 
     <padding>
         <Insets top="30" right="30" bottom="30" left="30"/>

@@ -1,6 +1,7 @@
 package com.fileforge.controller.document;
 
 import com.fileforge.controller.NavigationHelper;
+import com.fileforge.util.ActivityLogger;
 import com.documents4j.api.DocumentType;
 import com.documents4j.api.IConverter;
 import com.documents4j.job.LocalConverter;
@@ -72,6 +73,8 @@ public class DocxToPdfController {
         statusLabel.setText("Executing high-fidelity merging and rendering...");
         convertButton.setDisable(true);
 
+        List<File> filesUsed = new ArrayList<>(selectedWordFiles);
+
         Task<Void> task = new Task<>() {
             @Override
             protected Void call() throws Exception {
@@ -80,7 +83,7 @@ public class DocxToPdfController {
 
                 try {
                     // 1. Convert each Word file into a quick temporary PDF snippet
-                    for (File wordFile : selectedWordFiles) {
+                    for (File wordFile : filesUsed) {
                         File tempPdf = File.createTempFile("forge_merge_tmp_", ".pdf");
                         tempPdf.deleteOnExit();
                         tempPdfFiles.add(tempPdf);
@@ -110,11 +113,12 @@ public class DocxToPdfController {
         };
 
         task.setOnSucceeded(e -> {
-            if (selectedWordFiles.size() == 1) {
+            if (filesUsed.size() == 1) {
                 statusLabel.setText("Converted successfully → " + destinationFile.getName());
             } else {
-                statusLabel.setText("Successfully merged " + selectedWordFiles.size() + " files into one PDF!");
+                statusLabel.setText("Successfully merged " + filesUsed.size() + " files into one PDF!");
             }
+            ActivityLogger.log("DOCX to PDF", ActivityLogger.joinPaths(filesUsed), destinationFile.getAbsolutePath());
             convertButton.setDisable(false);
         });
 

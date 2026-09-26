@@ -9,6 +9,7 @@
 
 <VBox xmlns="http://javafx.com" xmlns:fx="http://javafx.com"
       fx:controller="com.fileforge.controller.image.CompressImageController"
+      styleClass="content-area"
       spacing="15">
 
     <padding>
@@ -25,10 +26,8 @@
         <Label fx:id="statusLabel" text="No files chosen" styleClass="page-subtitle"/>
     </HBox>
 
-    <!-- File queue list view -->
     <ListView fx:id="fileListView" prefHeight="160" maxWidth="500" styleClass="list-view"/>
 
-    <!-- Compression Configuration Slider -->
     <VBox spacing="5" maxWidth="400">
         <HBox alignment="CENTER_LEFT" spacing="10">
             <Label text="Compression Quality:" styleClass="field-label"/>
