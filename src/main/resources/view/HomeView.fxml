@@ -7,7 +7,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox xmlns="http://javafx.com" xmlns:fx="http://javafx.com"
+<!-- Added fx:id="mainRootContainer" to target properties bindings dynamically -->
+<HBox fx:id="mainRootContainer" xmlns="http://javafx.com" xmlns:fx="http://javafx.com"
       fx:controller="com.fileforge.controller.HomeController"
       spacing="20" style="-fx-background-color: #ffffff;">
 
@@ -15,8 +16,8 @@
         <Insets top="30" right="30" bottom="30" left="30"/>
     </padding>
 
-    <!-- LEFT COLUMN: Primary Feature Navigation Grid Dashboard (Expands flexibly) -->
-    <VBox spacing="10" HBox.hgrow="ALWAYS">
+    <!-- LEFT COLUMN: Primary Feature Navigation Grid Dashboard (Added fx:id="leftNavigationColumn") -->
+    <VBox fx:id="leftNavigationColumn" spacing="10" HBox.hgrow="ALWAYS">
         <Label text="Welcome to FileForge" styleClass="page-title"/>
         <Label text="Pick a category to get started" styleClass="page-subtitle"/>
 
@@ -45,8 +46,8 @@
         </FlowPane>
     </VBox>
 
-    <!-- RIGHT COLUMN: Asymmetrical Technical Activity Log Panel (Grows left into workspace) -->
-    <VBox prefWidth="360" minWidth="300" maxWidth="450" spacing="10" styleClass="activity-panel" HBox.hgrow="ALWAYS">
+    <!-- RIGHT COLUMN: Asymmetrical Technical Activity Log Panel (Added fx:id="rightActivityColumn") -->
+    <VBox fx:id="rightActivityColumn" spacing="10" styleClass="activity-panel">
         <padding>
             <Insets top="15" right="15" bottom="15" left="15"/>
         </padding>
