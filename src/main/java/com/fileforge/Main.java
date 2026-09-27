@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 import com.fileforge.database.SettingsEngine;
+import javafx.scene.image.Image;
 
 public class Main extends Application {
 
@@ -27,6 +28,7 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.setMinWidth(800);
         primaryStage.setMinHeight(550);
+        primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("/images/app-icon.png")));
         primaryStage.show();
     }
 

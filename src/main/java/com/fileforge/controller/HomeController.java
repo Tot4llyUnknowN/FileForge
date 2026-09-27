@@ -1,11 +1,16 @@
 package com.fileforge.controller;
 
 import com.fileforge.database.DatabaseManager;
+import com.fileforge.model.ActivityLogEntry;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 import java.sql.Connection;
@@ -18,13 +23,39 @@ public class HomeController {
     @FXML private HBox mainRootContainer;
     @FXML private VBox leftNavigationColumn;
     @FXML private VBox rightActivityColumn;
-    @FXML private ListView<String> recentHistoryListView;
+    @FXML private TableView<ActivityLogEntry> recentHistoryTable;
+    @FXML private TableColumn<ActivityLogEntry, String> operationColumn;
+    @FXML private TableColumn<ActivityLogEntry, String> fileColumn;
 
     @FXML
     public void initialize() {
+        operationColumn.setCellValueFactory(data -> data.getValue().operationProperty());
+        fileColumn.setCellValueFactory(data -> data.getValue().fileProperty());
+
+        hideTableHeader(recentHistoryTable);
+
         Platform.runLater(() -> {
             setupResponsiveLayoutBindings();
             readLogsFromDatabase();
+        });
+    }
+
+    /**
+     * FIX: CSS alone (-fx-max-height: 0 on .column-header-background) is not
+     * reliably respected by JavaFX's TableView skin across versions, so the
+     * header row still rendered visually. Forcing the actual header node
+     * hidden/unmanaged once the skin is attached removes it completely.
+     */
+    private void hideTableHeader(TableView<?> table) {
+        table.skinProperty().addListener((obs, oldSkin, newSkin) -> {
+            Pane header = (Pane) table.lookup("TableHeaderRow");
+            if (header != null) {
+                header.setMinHeight(0);
+                header.setPrefHeight(0);
+                header.setMaxHeight(0);
+                header.setVisible(false);
+                header.setManaged(false);
+            }
         });
     }
 
@@ -36,16 +67,8 @@ public class HomeController {
         leftNavigationColumn.prefWidthProperty().bind(mainRootContainer.widthProperty().multiply(0.65));
     }
 
-    /**
-     * FIX: the Recent Activity Log is now fully automatic and read-only.
-     * Every real tool operation writes its own row via ActivityLogger at the
-     * moment it succeeds (see the various tool controllers), so this view's
-     * only job is to read those rows back and format them for display. The
-     * old manual create/update/delete/purge controls have been removed from
-     * HomeView.fxml along with their handlers.
-     */
     private void readLogsFromDatabase() {
-        recentHistoryListView.getItems().clear();
+        ObservableList<ActivityLogEntry> entries = FXCollections.observableArrayList();
         String selectQuery =
                 "SELECT operation, file_source, save_destination FROM operational_history ORDER BY log_id DESC;";
 
@@ -56,18 +79,15 @@ public class HomeController {
                 String operation = rs.getString("operation");
                 String source = rs.getString("file_source");
                 String destination = rs.getString("save_destination");
-                recentHistoryListView.getItems().add(formatLogEntry(operation, source, destination));
+
+                String displayFile = (destination == null || destination.isBlank()) ? source : destination;
+                entries.add(new ActivityLogEntry(operation, displayFile));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
 
-    private String formatLogEntry(String operation, String source, String destination) {
-        if (destination == null || destination.isBlank()) {
-            return "[" + operation + "] " + source;
-        }
-        return "[" + operation + "] " + source + "  →  " + destination;
+        recentHistoryTable.setItems(entries);
     }
 
     @FXML private void goToDocument(MouseEvent event) { NavigationHelper.navigate(mainRootContainer, "/view/DocumentView.fxml"); }

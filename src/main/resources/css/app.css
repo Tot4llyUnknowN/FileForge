@@ -402,3 +402,63 @@
     -fx-control-inner-background: #26282c;
     -fx-control-inner-background-alt: #26282c;
 }
+
+/* ==========================================================================
+   Activity Log Table — no header row, no border (log starts immediately)
+   ========================================================================== */
+
+.activity-table {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-table-cell-border-color: transparent;
+}
+
+.activity-table .column-header-background {
+    -fx-background-color: transparent;
+    -fx-min-height: 0;
+    -fx-max-height: 0;
+    -fx-pref-height: 0;
+    visibility: hidden;
+}
+
+.activity-table .column-header,
+.activity-table .filler {
+    -fx-min-height: 0;
+    -fx-max-height: 0;
+    -fx-pref-height: 0;
+}
+
+.activity-table .table-row-cell {
+    -fx-background-color: #ffffff;
+    -fx-border-width: 0;
+    -fx-table-cell-border-color: transparent;
+}
+
+.activity-table .table-row-cell:odd {
+    -fx-background-color: #f1f3f5;
+}
+
+.activity-table .table-row-cell:selected {
+    -fx-background-color: #dbe4ff;
+}
+
+.activity-table .table-cell {
+    -fx-border-width: 0;
+    -fx-text-fill: #374151;
+}
+
+.dark-theme .activity-table .table-row-cell {
+    -fx-background-color: #26282c;
+}
+
+.dark-theme .activity-table .table-row-cell:odd {
+    -fx-background-color: #303236;
+}
+
+.dark-theme .activity-table .table-row-cell:selected {
+    -fx-background-color: #0b3d8c;
+}
+
+.dark-theme .activity-table .table-cell {
+    -fx-text-fill: #b5b8bd;
+}
