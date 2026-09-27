@@ -16,7 +16,6 @@ public class PdfThumbnailUtil {
 
     private static final float THUMBNAIL_DPI = 45f;
 
-    /** Renders a thumbnail for every page of the document. */
     public static List<Image> renderAllThumbnails(PDDocument document) throws IOException {
         PDFRenderer renderer = new PDFRenderer(document);
         List<Image> thumbnails = new ArrayList<>();
@@ -28,16 +27,12 @@ public class PdfThumbnailUtil {
         return thumbnails;
     }
 
-    /** Renders just the first page — used for PDF Merger's per-file preview. */
     public static Image renderFirstPageThumbnail(PDDocument document) throws IOException {
         PDFRenderer renderer = new PDFRenderer(document);
         BufferedImage bufferedImage = renderer.renderImageWithDPI(0, THUMBNAIL_DPI, ImageType.RGB);
         return toFxImage(bufferedImage);
     }
 
-    /**
-     * Manual BufferedImage -> JavaFX Image conversion, avoiding the javafx-swing dependency.
-     */
     public static Image toFxImage(BufferedImage bufferedImage) {
         int width = bufferedImage.getWidth();
         int height = bufferedImage.getHeight();

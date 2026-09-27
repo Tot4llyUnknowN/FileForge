@@ -26,12 +26,10 @@ public abstract class AbstractImageConverter implements ImageConverter {
         }
     }
 
-    /** Hook for subclasses — default is a no-op passthrough. */
     protected BufferedImage prepareImage(BufferedImage source) {
         return source;
     }
 
-    /** Shared helper: flattens transparency onto a white background (JPEG can't hold alpha). */
     protected BufferedImage flattenAlpha(BufferedImage source) {
         if (!source.getColorModel().hasAlpha()) {
             return source;

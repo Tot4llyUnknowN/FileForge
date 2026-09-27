@@ -31,6 +31,12 @@
         <Button text="Title Case" onAction="#titleCase" styleClass="tool-button"/>
         <Button text="UPPER" onAction="#upperCase" styleClass="tool-button"/>
         <Button text="lower" onAction="#lowerCase" styleClass="tool-button"/>
+
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button text="Translate to Bangla" onAction="#translateText" styleClass="primary-button"/>
+        <Label fx:id="translateStatusLabel" styleClass="status-label" wrapText="true"/>
         <Button text="Copy" onAction="#copyResult" styleClass="tool-button"/>
         <Button text="Clear" onAction="#clearAll" styleClass="tool-button"/>
     </HBox>

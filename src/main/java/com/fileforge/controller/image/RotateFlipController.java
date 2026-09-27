@@ -129,7 +129,7 @@ public class RotateFlipController {
 
         AffineTransform at = new AffineTransform();
         at.translate(0, h);
-        at.scale(1.0, -1.0); // Invert structural vertical coordinates mapping
+        at.scale(1.0, -1.0);
 
         applyTransform(flipped, at);
         statusLabel.setText("Flipped vertically.");
@@ -139,7 +139,6 @@ public class RotateFlipController {
         AffineTransformOp op = new AffineTransformOp(transform, AffineTransformOp.TYPE_BILINEAR);
         currentImage = op.filter(currentImage, targetImage);
 
-        // Flatten alpha channels if format drops support seamlessly
         try {
             File tempFile = File.createTempFile("forge_preview_", "." + getExtension(sourceFile.getName()));
             tempFile.deleteOnExit();
@@ -155,9 +154,6 @@ public class RotateFlipController {
     @FXML
     private void saveImage() {
         if (currentImage == null || sourceFile == null) return;
-
-        // Capture the pre-save source path — sourceFile is reassigned to the
-        // destination below once saving succeeds, for continuous editing.
         File preSaveSourceFile = sourceFile;
 
         FileChooser saveChooser = new FileChooser();
@@ -176,7 +172,6 @@ public class RotateFlipController {
             statusLabel.setText("Transformed changes committed onto disk: " + destination.getName());
             ActivityLogger.log("Rotate/Flip Image", preSaveSourceFile.getAbsolutePath(), destination.getAbsolutePath());
 
-            // Re-bootstrap workspace states cleanly
             sourceFile = destination;
             updatePreview(destination);
 

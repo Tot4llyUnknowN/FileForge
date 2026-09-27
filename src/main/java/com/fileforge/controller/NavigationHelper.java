@@ -29,13 +29,6 @@ public class NavigationHelper {
             FXMLLoader loader = new FXMLLoader(NavigationHelper.class.getResource(fxmlPath));
             Parent view = loader.load();
 
-            // Theming no longer needs to be reapplied here: SettingsEngine now
-            // toggles the "dark-theme" style class once on the scene root
-            // (see Main.java / SettingsController), and app.css's descendant
-            // selectors (".dark-theme .card", etc.) cascade automatically to
-            // any view swapped into contentArea, since it's a child of that
-            // same themed root. No per-view style pass needed.
-
             contentArea.getChildren().setAll(view);
 
         } catch (IOException e) {

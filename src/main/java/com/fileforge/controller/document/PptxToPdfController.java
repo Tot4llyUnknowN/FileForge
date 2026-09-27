@@ -79,10 +79,8 @@ public class PptxToPdfController {
         Task<Void> task = new Task<>() {
             @Override
             protected Void call() throws Exception {
-                // 1. Initialize a unified vector PDF document
                 try (PDDocument finalPdf = new PDDocument()) {
 
-                    // 2. Loop through every selected presentation deck sequentially
                     for (File pptxFile : filesUsed) {
                         try (FileInputStream fis = new FileInputStream(pptxFile);
                              XMLSlideShow ppt = new XMLSlideShow(fis)) {
@@ -92,16 +90,13 @@ public class PptxToPdfController {
                             float height = (float) pageSize.getHeight();
                             PDRectangle pdfPageSize = new PDRectangle(width, height);
 
-                            // 3. Render slide graphics onto high-DPI raster buffers natively
                             for (XSLFSlide slide : ppt.getSlides()) {
-                                // 2x Scaling factor handles text clarity beautifully on 1080p/4K panels
                                 int scale = 2;
                                 BufferedImage img = new BufferedImage(
                                         pageSize.width * scale, pageSize.height * scale, BufferedImage.TYPE_INT_RGB);
 
                                 Graphics2D graphics = img.createGraphics();
                                 try {
-                                    // Set rendering hints to optimize font antialiasing and shape smoothing definitions
                                     graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
                                     graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
                                     graphics.setRenderingHint(RenderingHints.KEY_FRACTIONALMETRICS, RenderingHints.VALUE_FRACTIONALMETRICS_ON);
@@ -111,25 +106,21 @@ public class PptxToPdfController {
                                     graphics.setColor(Color.white);
                                     graphics.fillRect(0, 0, pageSize.width, pageSize.height);
 
-                                    // Render the full slide shapes, tables, text layouts, and backgrounds onto our vector grid buffer
                                     slide.draw(graphics);
                                 } finally {
                                     graphics.dispose();
                                 }
 
-                                // 4. Draw the generated high-fidelity slide buffer directly onto a new PDFBox page layer
                                 PDPage pdfPage = new PDPage(pdfPageSize);
                                 finalPdf.addPage(pdfPage);
 
                                 try (PDPageContentStream contentStream = new PDPageContentStream(finalPdf, pdfPage)) {
-                                    // Compress slide image buffer as high-quality JPEG elements to keep file sizes slim
                                     PDImageXObject xObject = JPEGFactory.createFromImage(finalPdf, img, 0.92f);
                                     contentStream.drawImage(xObject, 0, 0, width, height);
                                 }
                             }
                         }
                     }
-                    // Save the final unified multi-page compiled presentation file safely
                     try (FileOutputStream fos = new FileOutputStream(destinationFile)) {
                         finalPdf.save(fos);
                     }
@@ -150,7 +141,7 @@ public class PptxToPdfController {
             task.getException().printStackTrace();
         });
 
-        new Thread(task).start();
+        com.fileforge.util.AppExecutor.get().submit(task);
     }
 
     private String stripExtension(String filename) {

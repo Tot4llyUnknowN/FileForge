@@ -13,11 +13,6 @@ import javafx.scene.layout.VBox;
 
 import java.util.function.Function;
 
-/**
- * A ListCell showing a thumbnail image + caption. Supports optional drag-and-drop
- * reordering within its own ListView, and optional external selection highlighting
- * (re-evaluated on every updateItem, so it survives cell recycling during scrolling).
- */
 public class ThumbnailCell<T> extends ListCell<T> {
 
     private final Function<T, Image> thumbnailProvider;

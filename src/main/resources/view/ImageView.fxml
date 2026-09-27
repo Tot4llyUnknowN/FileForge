@@ -1,75 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.fileforge.controller.ImageController"
-      styleClass="content-area"
-      spacing="10">
+<ScrollPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.fileforge.controller.ImageController"
+            fitToWidth="true" styleClass="edge-to-edge">
 
-    <padding>
-        <Insets top="30" right="30" bottom="30" left="30"/>
-    </padding>
+    <VBox spacing="10">
+        <padding>
+            <Insets top="30" right="30" bottom="30" left="30"/>
+        </padding>
 
-    <Label text="Image Tools" styleClass="page-title"/>
-    <Label text="Choose a tool" styleClass="page-subtitle"/>
+        <Label text="Image Tools" styleClass="page-title"/>
+        <Label text="Choose a tool" styleClass="page-subtitle"/>
 
-    <FlowPane hgap="20" vgap="20" styleClass="card-grid">
-        <VBox.margin>
-            <Insets top="20"/>
-        </VBox.margin>
+        <FlowPane fx:id="cardGrid" hgap="20" vgap="20" styleClass="card-grid">
+            <VBox.margin>
+                <Insets top="20"/>
+            </VBox.margin>
 
-        <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToJpgToPng">
-            <Label text="🔄" styleClass="card-icon"/>
-            <Label text="JPG to PNG" styleClass="card-title"/>
-        </VBox>
+            <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToJpgToPng">
+                <Label text="🔄" styleClass="card-icon"/>
+                <Label text="JPG to PNG" styleClass="card-title"/>
+            </VBox>
 
-        <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToPngToJpg">
-            <Label text="🔁" styleClass="card-icon"/>
-            <Label text="PNG to JPG" styleClass="card-title"/>
-        </VBox>
+            <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToPngToJpg">
+                <Label text="🔁" styleClass="card-icon"/>
+                <Label text="PNG to JPG" styleClass="card-title"/>
+            </VBox>
 
-        <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToWebpToJpg">
-            <Label text="🌐" styleClass="card-icon"/>
-            <Label text="WEBP to JPG" styleClass="card-title"/>
-        </VBox>
+            <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToWebpToJpg">
+                <Label text="🌐" styleClass="card-icon"/>
+                <Label text="WEBP to JPG" styleClass="card-title"/>
+            </VBox>
 
-        <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToImageToPdf">
-            <Label text="🖼" styleClass="card-icon"/>
-            <Label text="Image to PDF" styleClass="card-title"/>
-        </VBox>
+            <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToImageToPdf">
+                <Label text="🖼" styleClass="card-icon"/>
+                <Label text="Image to PDF" styleClass="card-title"/>
+            </VBox>
 
-        <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToPdfToImage">
-            <Label text="📤" styleClass="card-icon"/>
-            <Label text="PDF to Image" styleClass="card-title"/>
-        </VBox>
+            <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToPdfToImage">
+                <Label text="📤" styleClass="card-icon"/>
+                <Label text="PDF to Image" styleClass="card-title"/>
+            </VBox>
 
-        <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToResize">
-            <Label text="📐" styleClass="card-icon"/>
-            <Label text="Resize Image" styleClass="card-title"/>
-        </VBox>
+            <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToResize">
+                <Label text="📐" styleClass="card-icon"/>
+                <Label text="Resize Image" styleClass="card-title"/>
+            </VBox>
 
-        <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToCompress">
-            <Label text="🗜" styleClass="card-icon"/>
-            <Label text="Compress Image" styleClass="card-title"/>
-        </VBox>
+            <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToCompress">
+                <Label text="🗜" styleClass="card-icon"/>
+                <Label text="Compress Image" styleClass="card-title"/>
+            </VBox>
 
-        <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToCrop">
-            <Label text="✂" styleClass="card-icon"/>
-            <Label text="Crop Image" styleClass="card-title"/>
-        </VBox>
+            <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToCrop">
+                <Label text="✂" styleClass="card-icon"/>
+                <Label text="Crop Image" styleClass="card-title"/>
+            </VBox>
 
-        <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToRotateFlip">
-            <Label text="🔃" styleClass="card-icon"/>
-            <Label text="Rotate and Flip" styleClass="card-title"/>
-        </VBox>
+            <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToRotateFlip">
+                <Label text="🔃" styleClass="card-icon"/>
+                <Label text="Rotate and Flip" styleClass="card-title"/>
+            </VBox>
 
-        <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToMetadata">
-            <Label text="🔍" styleClass="card-icon"/>
-            <Label text="Metadata Viewer" styleClass="card-title"/>
-        </VBox>
+            <VBox styleClass="card, card-image" prefWidth="200" prefHeight="110" onMouseClicked="#goToMetadata">
+                <Label text="🔍" styleClass="card-icon"/>
+                <Label text="Metadata Viewer" styleClass="card-title"/>
+            </VBox>
 
-    </FlowPane>
-</VBox>
+        </FlowPane>
+    </VBox>
+</ScrollPane>

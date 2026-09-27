@@ -6,8 +6,8 @@ import java.io.File;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AppSettings {
 
-    private String activeTheme = "CLASSIC_LIGHT"; // CLASSIC_LIGHT or STUDIO_DARK
-    private String activeFontFamily = "Segoe UI";  // Segoe UI, Consolas, or System Monospaced
+    private String activeTheme = "CLASSIC_LIGHT";
+    private String activeFontFamily = "Segoe UI";
     private String defaultExportPath = System.getProperty("user.home") + File.separator + "Downloads";
     private boolean autoOverwriteExisting = true;
     private int maxProcessingThreads = 4;

@@ -11,7 +11,7 @@
             fx:controller="com.fileforge.controller.MainController">
 
     <left>
-        <VBox styleClass="activity-panel, sidebar" prefWidth="200.0" spacing="5">
+        <VBox fx:id="sidebar" styleClass="activity-panel, sidebar" spacing="5">
             <padding>
                 <Insets top="20" right="10" bottom="20" left="10"/>
             </padding>

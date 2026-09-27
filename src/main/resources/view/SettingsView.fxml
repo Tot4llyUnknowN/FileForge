@@ -54,4 +54,8 @@
         <Label fx:id="statusMessageLabel" text="System preferences synchronized cleanly." styleClass="status-label"/>
     </HBox>
 
+    <VBox VBox.vgrow="ALWAYS"/>
+
+    <Label text="© 2026 Md. Imran Faraj — github.com/ot4llyUnknowN" styleClass="page-subtitle" alignment="CENTER" maxWidth="Infinity" style="-fx-text-alignment: center;"/>
+
 </VBox>

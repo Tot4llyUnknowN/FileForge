@@ -2,7 +2,7 @@ package com.fileforge.controller.image;
 
 import com.fileforge.controller.NavigationHelper;
 import com.fileforge.util.ActivityLogger;
-import com.fileforge.util.ImageConversionUtil;
+import com.fileforge.util.PngToJpgConverter;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -60,7 +60,7 @@ public class PngToJpgController {
         }
 
         try {
-            ImageConversionUtil.convert(selectedFile, outputFile, "jpg");
+            new PngToJpgConverter().convert(selectedFile, outputFile);
             statusLabel.setText("Converted successfully: " + outputFile.getName());
             ActivityLogger.log("PNG to JPG", selectedFile.getAbsolutePath(), outputFile.getAbsolutePath());
         } catch (IOException e) {

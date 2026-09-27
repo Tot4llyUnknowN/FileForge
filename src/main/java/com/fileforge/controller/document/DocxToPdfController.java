@@ -82,7 +82,6 @@ public class DocxToPdfController {
                 List<File> tempPdfFiles = new ArrayList<>();
 
                 try {
-                    // 1. Convert each Word file into a quick temporary PDF snippet
                     for (File wordFile : filesUsed) {
                         File tempPdf = File.createTempFile("forge_merge_tmp_", ".pdf");
                         tempPdf.deleteOnExit();
@@ -91,7 +90,6 @@ public class DocxToPdfController {
                         convertDocx(wordFile, tempPdf, converter);
                     }
 
-                    // 2. STITCH PIPELINE: Use PDFMergerUtility to join them into one output file
                     PDFMergerUtility merger = new PDFMergerUtility();
                     for (File tempPdf : tempPdfFiles) {
                         merger.addSource(tempPdf);
@@ -101,7 +99,6 @@ public class DocxToPdfController {
 
                 } finally {
                     converter.shutDown();
-                    // 3. STORAGE SANITIZATION: Instantly scrub temporary pieces from disk
                     for (File tempPdf : tempPdfFiles) {
                         if (tempPdf.exists()) {
                             tempPdf.delete();
@@ -128,7 +125,7 @@ public class DocxToPdfController {
             task.getException().printStackTrace();
         });
 
-        new Thread(task).start();
+        com.fileforge.util.AppExecutor.get().submit(task);
     }
 
     private void convertDocx(File src, File dest, IConverter converter) throws Exception {

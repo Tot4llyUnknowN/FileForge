@@ -29,7 +29,6 @@ public class MetadataViewController {
 
     @FXML
     public void initialize() {
-        // Wire table column data mappings
         categoryColumn.setCellValueFactory(cellData -> cellData.getValue().categoryProperty());
         tagColumn.setCellValueFactory(cellData -> cellData.getValue().tagProperty());
         valueColumn.setCellValueFactory(cellData -> cellData.getValue().valueProperty());
@@ -50,7 +49,6 @@ public class MetadataViewController {
         statusLabel.setText("Scanning headers...");
 
         try {
-            // Extract the metadata blocks using Drew Noakes library engine
             Metadata metadata = ImageMetadataReader.readMetadata(file);
 
             for (Directory directory : metadata.getDirectories()) {
@@ -59,7 +57,6 @@ public class MetadataViewController {
                     String tagName = tag.getTagName();
                     String description = tag.getDescription();
 
-                    // Add row definition mapping to our localized visual array
                     metadataTable.getItems().add(new MetadataTagRow(directoryName, tagName, description));
                 }
             }
@@ -70,7 +67,6 @@ public class MetadataViewController {
                 statusLabel.setText("Successfully parsed " + metadataTable.getItems().size() + " metadata fields!");
             }
 
-            // View-only operation: no output file is produced/saved, so log source only.
             ActivityLogger.log("View Image Metadata", file.getAbsolutePath());
 
         } catch (Exception e) {
@@ -83,7 +79,6 @@ public class MetadataViewController {
         NavigationHelper.navigate(backButton, "/view/ImageView.fxml");
     }
 
-    // Local inner tracking data architecture for clean TableView population mechanics
     public static class MetadataTagRow {
         private final SimpleStringProperty category;
         private final SimpleStringProperty tag;

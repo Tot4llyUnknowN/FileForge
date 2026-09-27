@@ -48,6 +48,7 @@ public class DatabaseManager {
                 operation TEXT NOT NULL,
                 file_source TEXT NOT NULL,
                 save_destination TEXT,
+                notes TEXT,
                 timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
                 FOREIGN KEY (user_fk) REFERENCES users(user_id) ON DELETE CASCADE
             );
@@ -56,12 +57,17 @@ public class DatabaseManager {
         try (Statement stmt = conn.createStatement()) {
             boolean tableExists = false;
             boolean hasOperationColumn = false;
+            boolean hasNotesColumn = false;
 
             try (ResultSet rs = stmt.executeQuery("PRAGMA table_info(operational_history);")) {
                 while (rs.next()) {
                     tableExists = true;
-                    if ("operation".equalsIgnoreCase(rs.getString("name"))) {
+                    String colName = rs.getString("name");
+                    if ("operation".equalsIgnoreCase(colName)) {
                         hasOperationColumn = true;
+                    }
+                    if ("notes".equalsIgnoreCase(colName)) {
+                        hasNotesColumn = true;
                     }
                 }
             }
@@ -69,9 +75,16 @@ public class DatabaseManager {
             if (tableExists && !hasOperationColumn) {
                 stmt.execute("DROP TABLE IF EXISTS operational_history;");
                 System.out.println("[SQLite Engine] Migrated operational_history to new schema.");
+                tableExists = false;
             }
 
             stmt.execute(createHistoryTable);
+
+            // Lightweight migration: add the notes column if an older table already existed without it
+            if (tableExists && !hasNotesColumn) {
+                stmt.execute("ALTER TABLE operational_history ADD COLUMN notes TEXT;");
+                System.out.println("[SQLite Engine] Added 'notes' column to operational_history.");
+            }
         }
     }
 

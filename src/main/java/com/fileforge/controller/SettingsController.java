@@ -20,15 +20,12 @@ public class SettingsController {
 
     @FXML
     public void initialize() {
-        // Populate selection collections inside structural dropdown component nodes
         themeComboBox.setItems(FXCollections.observableArrayList("CLASSIC_LIGHT", "STUDIO_DARK"));
         fontComboBox.setItems(FXCollections.observableArrayList("Segoe UI", "Consolas", "Courier New", "Arial"));
         threadsComboBox.setItems(FXCollections.observableArrayList(2, 4, 8, 12));
 
-        // Pull active saved states straight out of the JSON properties cache
         AppSettings settings = SettingsEngine.getActiveSettings();
 
-        // Map values accurately into current UI fields views
         themeComboBox.setValue(settings.getActiveTheme());
         fontComboBox.setValue(settings.getActiveFontFamily());
         exportDirectoryField.setText(settings.getDefaultExportPath());
@@ -52,11 +49,10 @@ public class SettingsController {
         updated.setMaxProcessingThreads(threadsComboBox.getValue());
         updated.setAutoOverwriteExisting(overwriteCheckbox.isSelected());
 
-        // Commit preferences data object variables to local settings.json file
         SettingsEngine.saveSettings(updated);
 
-        // FIXED: Fetch the absolute master Scene root tree container window node
-        // to force your sidebar menu text and dashboard boundaries to refresh colors instantly!
+        com.fileforge.util.AppExecutor.reconfigure();
+
         if (exportDirectoryField.getScene() != null) {
             SettingsEngine.applyVisualStyles(exportDirectoryField.getScene().getRoot());
         }

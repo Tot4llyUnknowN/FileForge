@@ -2,8 +2,20 @@ package com.fileforge.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.FlowPane;
 
 public class ImageController {
+
+    @FXML private FlowPane cardGrid;
+
+    @FXML
+    public void initialize() {
+        cardGrid.sceneProperty().addListener((obs, oldScene, newScene) -> {
+            if (newScene != null) {
+                cardGrid.prefWrapLengthProperty().bind(newScene.widthProperty().subtract(240));
+            }
+        });
+    }
 
     @FXML private void goToJpgToPng(MouseEvent e) { nav(e, "/view/image/JpgToPngView.fxml"); }
     @FXML private void goToPngToJpg(MouseEvent e) { nav(e, "/view/image/PngToJpgView.fxml"); }

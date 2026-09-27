@@ -104,7 +104,7 @@ public class CompressImageController {
             }
         };
 
-        new Thread(compressionTask).start();
+        com.fileforge.util.AppExecutor.get().submit(compressionTask);
     }
 
     private void compressToTargetSize(File srcFile, File destDir, double targetPercentage) throws IOException {
@@ -120,7 +120,6 @@ public class CompressImageController {
 
         File outputFile = new File(destDir, stripExtension(srcFile.getName()) + "_compressed." + ext);
 
-        // Standardize output color models to avoid transparency writing crashes on loose JPEG formats
         BufferedImage processingImage = originalImage;
         if (format.equals("jpeg") && originalImage.getColorModel().hasAlpha()) {
             BufferedImage flattened = new BufferedImage(originalImage.getWidth(), originalImage.getHeight(), BufferedImage.TYPE_INT_RGB);
@@ -133,7 +132,6 @@ public class CompressImageController {
         byte[] finalBytes = null;
         double scaleFactor = 1.0;
 
-        // Loop down canvas dimensions if quality adjustments alone can't choke the byte array small enough
         while (finalBytes == null || finalBytes.length > targetSizeBytes + (originalSizeBytes * 0.05)) {
             BufferedImage scaledImage = processingImage;
             if (scaleFactor < 1.0) {
@@ -148,10 +146,8 @@ public class CompressImageController {
                 g2.dispose();
             }
 
-            // Binary search target compression quality matrix boundaries
             finalBytes = binarySearchQualityBytes(scaledImage, format, targetSizeBytes);
 
-            // If the output size is still too large, step down image dimension boundaries by 15% and try again
             if (finalBytes.length > targetSizeBytes) {
                 scaleFactor -= 0.15;
             } else {
@@ -159,7 +155,6 @@ public class CompressImageController {
             }
         }
 
-        // Write the calculated target array to disk
         try (FileOutputStream fos = new FileOutputStream(outputFile)) {
             fos.write(finalBytes != null ? finalBytes : new byte[0]);
         }
@@ -172,7 +167,6 @@ public class CompressImageController {
 
         ImageWriteParam param = writer.getDefaultWriteParam();
 
-        // Formats like PNG don't support loose lossy adjustments natively. Fallback to basic stream arrays.
         if (!param.canWriteCompressed()) {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             try (MemoryCacheImageOutputStream mcios = new MemoryCacheImageOutputStream(baos)) {
@@ -190,7 +184,6 @@ public class CompressImageController {
         float bestQuality = 0.5f;
         byte[] bestBytes = null;
 
-        // 6 Iterations run in milliseconds and calculate precise output curves
         for (int i = 0; i < 6; i++) {
             float mid = (low + high) / 2f;
             param.setCompressionQuality(mid);
@@ -206,9 +199,9 @@ public class CompressImageController {
             if (currentBytes.length <= targetSize) {
                 bestQuality = mid;
                 bestBytes = currentBytes;
-                low = mid; // Try to get higher quality while staying under size
+                low = mid;
             } else {
-                high = mid; // Too big, pull quality down
+                high = mid;
                 if (bestBytes == null) bestBytes = currentBytes;
             }
         }

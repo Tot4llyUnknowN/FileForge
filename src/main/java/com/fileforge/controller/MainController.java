@@ -2,6 +2,7 @@ package com.fileforge.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 public class MainController {
 
@@ -9,8 +10,19 @@ public class MainController {
     private StackPane contentArea;
 
     @FXML
+    private VBox sidebar;
+
+    @FXML
     public void initialize() {
         showHome();
+
+        sidebar.sceneProperty().addListener((obs, oldScene, newScene) -> {
+            if (newScene != null) {
+                sidebar.prefWidthProperty().bind(newScene.widthProperty().multiply(0.20));
+                sidebar.setMinWidth(160);
+                sidebar.setMaxWidth(260);
+            }
+        });
     }
 
     @FXML private void showHome() { loadView("/view/HomeView.fxml"); }
@@ -23,15 +35,7 @@ public class MainController {
         try {
             javafx.fxml.FXMLLoader loader = new javafx.fxml.FXMLLoader(getClass().getResource(fxmlPath));
             javafx.scene.Parent root = loader.load();
-
-            // Theming is handled once, on the scene root, via
-            // SettingsEngine.applyVisualStyles() in Main.java (at launch) and
-            // SettingsController (on save). app.css's ".dark-theme" descendant
-            // selectors cascade down to whatever gets swapped into contentArea,
-            // so no per-view style pass is needed here anymore.
-
             contentArea.getChildren().setAll(root);
-
         } catch (java.io.IOException e) {
             e.printStackTrace();
         }

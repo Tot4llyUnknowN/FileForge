@@ -1,11 +1,9 @@
-/* ==========================================================================
-   FileForge Master Stylesheet - Win32 Classic (Refined Borders Edition)
-   ========================================================================== */
+
 
 /* Global Environment Base & Typographic Overrides */
 .root {
     -fx-font-family: 'MS Sans Serif', 'Tahoma', 'Segoe UI', -fx-font-sans-serif;
-    -fx-background-color: #ffffff; /* Crisp white application base */
+    -fx-background-color: #ffffff;
 }
 
 /* Sidebar Shell Panel - Grounded window frame divider */
@@ -213,6 +211,23 @@
     -fx-background-color: #ffffff;
     -fx-border-color: #4b5563; /* Refined thin 1px weight border inside the panel panel */
     -fx-border-width: 1px;
+}
+
+/* ==========================================================================
+   ScrollPane — used to prevent content being clipped on small windows
+   ========================================================================== */
+.edge-to-edge {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+    -fx-border-width: 0;
+}
+.edge-to-edge > .viewport {
+    -fx-background-color: transparent;
+}
+
+.dark-theme .edge-to-edge {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
 }
 
 /* ==========================================================================
@@ -432,6 +447,7 @@
     -fx-background-color: #ffffff;
     -fx-border-width: 0;
     -fx-table-cell-border-color: transparent;
+    -fx-cell-size: -1;
 }
 
 .activity-table .table-row-cell:odd {
@@ -443,8 +459,16 @@
 }
 
 .activity-table .table-cell {
-    -fx-border-width: 0;
+    -fx-border-width: 0 1 0 0;
+    -fx-border-color: #d0d3d7;
     -fx-text-fill: #374151;
+}
+
+/* Explicit text color for the custom wrapping Label used in Operation/File
+   columns (HomeController.setupWrappingCell) — without this it falls back
+   to default black text, invisible on the dark theme's dark rows. */
+.wrap-cell-label {
+    -fx-fill: #374151;
 }
 
 .dark-theme .activity-table .table-row-cell {
@@ -461,4 +485,10 @@
 
 .dark-theme .activity-table .table-cell {
     -fx-text-fill: #b5b8bd;
+    -fx-border-width: 0 1 0 0;
+    -fx-border-color: #44464b;
+}
+
+.dark-theme .wrap-cell-label {
+    -fx-fill: #b5b8bd;
 }

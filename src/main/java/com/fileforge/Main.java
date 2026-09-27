@@ -20,8 +20,6 @@ public class Main extends Application {
         Scene scene = new Scene(root, 1000, 650);
         scene.getStylesheets().add(Main.class.getResource("/css/app.css").toExternalForm());
 
-        // Apply the dark-theme style class (if active) to the actual scene root,
-        // now that the Scene exists.
         SettingsEngine.applyVisualStyles(root);
 
         primaryStage.setTitle("FileForge");
@@ -30,6 +28,11 @@ public class Main extends Application {
         primaryStage.setMinHeight(550);
         primaryStage.getIcons().add(new Image(Main.class.getResourceAsStream("/images/app-icon.png")));
         primaryStage.show();
+    }
+
+    @Override
+    public void stop() {
+        com.fileforge.util.AppExecutor.shutdown();
     }
 
     public static void main(String[] args) {

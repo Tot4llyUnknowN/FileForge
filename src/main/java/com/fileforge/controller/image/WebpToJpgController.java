@@ -2,7 +2,7 @@ package com.fileforge.controller.image;
 
 import com.fileforge.controller.NavigationHelper;
 import com.fileforge.util.ActivityLogger;
-import com.fileforge.util.ImageConversionUtil;
+import com.fileforge.util.WebpToJpgConverter;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -67,7 +67,7 @@ public class WebpToJpgController {
         }
 
         try {
-            ImageConversionUtil.convert(selectedFile, outputFile, "jpg");
+            new WebpToJpgConverter().convert(selectedFile, outputFile);
             statusLabel.setText("Converted successfully: " + outputFile.getName());
             ActivityLogger.log("WEBP to JPG", selectedFile.getAbsolutePath(), outputFile.getAbsolutePath());
         } catch (IOException e) {

@@ -36,7 +36,6 @@ public class CropImageController {
 
     @FXML
     public void initialize() {
-        // Build the drawing overlay box container
         cropBounds = new Rectangle(0, 0, 0, 0);
         cropBounds.setStroke(Color.web("#6c4fd6")); // Theme purple accent
         cropBounds.setStrokeWidth(2);
@@ -69,7 +68,6 @@ public class CropImageController {
             Image fxImage = new Image(file.toURI().toString());
             previewImage.setImage(fxImage);
 
-            // Constrain visual stack dimensions neatly inside viewport rules
             imagePane.setMaxWidth(previewImage.getFitWidth());
             imagePane.setMaxHeight(previewImage.getFitHeight());
 
@@ -103,7 +101,6 @@ public class CropImageController {
         double currentX = e.getX();
         double currentY = e.getY();
 
-        // Enforce boundary logic calculations relative to structural viewports
         double endX = Math.max(0, Math.min(currentX, previewImage.getBoundsInParent().getWidth()));
         double endY = Math.max(0, Math.min(currentY, previewImage.getBoundsInParent().getHeight()));
 
@@ -126,7 +123,6 @@ public class CropImageController {
     private void cropAndSave() {
         if (sourceImage == null || !cropBounds.isVisible()) return;
 
-        // Map layout view geometry scaling properties directly to structural pixel layouts
         double boundsWidth = previewImage.getBoundsInParent().getWidth();
         double boundsHeight = previewImage.getBoundsInParent().getHeight();
 
@@ -138,7 +134,6 @@ public class CropImageController {
         int pixelW = (int) (cropBounds.getWidth() * scaleX);
         int pixelH = (int) (cropBounds.getHeight() * scaleY);
 
-        // Sanity check coordinates to avoid runtime array indexing exceptions
         pixelX = Math.max(0, Math.min(pixelX, sourceImage.getWidth() - 1));
         pixelY = Math.max(0, Math.min(pixelY, sourceImage.getHeight() - 1));
         pixelW = Math.max(1, Math.min(pixelW, sourceImage.getWidth() - pixelX));
@@ -154,14 +149,11 @@ public class CropImageController {
         File destination = saveChooser.showSaveDialog(backButton.getScene().getWindow());
         if (destination == null) return;
 
-        // Capture the pre-crop source path now — sourceFile gets reassigned to
-        // the destination below so the user can keep chaining crops on the result.
         File cropSourceFile = sourceFile;
 
         try {
             BufferedImage croppedSubImage = sourceImage.getSubimage(pixelX, pixelY, pixelW, pixelH);
 
-            // Format fallback standardization framework rules
             String formatName = ext.equalsIgnoreCase("jpg") ? "jpeg" : ext.toLowerCase();
             ImageIO.write(croppedSubImage, formatName, destination);
 
@@ -170,7 +162,6 @@ public class CropImageController {
             cropBounds.setVisible(false);
             cropButton.setDisable(true);
 
-            // Re-bootstrap working memory layout architectures
             sourceImage = ImageIO.read(destination);
             sourceFile = destination;
             previewImage.setImage(new Image(destination.toURI().toString()));

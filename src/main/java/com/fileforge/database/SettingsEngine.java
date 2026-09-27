@@ -44,19 +44,6 @@ public class SettingsEngine {
         return activeSettings;
     }
 
-    /**
-     * Applies the active theme by toggling the "dark-theme" style class on the
-     * given root node. app.css already defines a full ".dark-theme ..." rule set
-     * mirroring every light-theme selector, so no inline styles are needed here
-     * — the stylesheet does the work once the class is present.
-     *
-     * FIX: this class was previously never added anywhere in the codebase,
-     * so app.css's entire dark-theme block was dead code and the app always
-     * rendered in the light palette regardless of settings.json.
-     *
-     * Font family is still applied inline per-root since app.css hardcodes
-     * a fixed font stack and can't read the user's chosen font dynamically.
-     */
     public static void applyVisualStyles(Parent rootNode) {
         if (rootNode == null) return;
 
