@@ -14,7 +14,9 @@ Thumbs.db
 *.log
 
 # Build artifacts
+working build/
 dist/
 jpackage-input/
 ff_error.txt
+ff_error2.txt
 dependency-reduced-pom.xml
